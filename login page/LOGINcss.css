@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+/* Canvas smoke background */
+#fluid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Outer container */
+.form-container {
+    position: relative;
+    width: 380px;
+    height: 500px; /* Adjusted height for new links */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 1);
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Hide controls */
+#chk, input[name="login-slide"] {
+    display: none;
+}
+
+/* Signup Form Styling */
+.signup {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    transition: transform 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    transform: translateY(100%);
+    z-index: 1;
+}
+
+/* Wrapper for Login, Admin, and Staff Forms */
+.login-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+    transform: translateY(0%);
+    z-index: 2;
+}
+
+
+/* Vertical slide animation for SignUp */
+#chk:checked ~ .signup {
+    transform: translateY(0%);
+    z-index: 2;
+}
+#chk:checked ~ .login-wrapper {
+    transform: translateY(-100%);
+    z-index: 1;
+}
+
+/* Shared styles for Login, Admin, and Staff forms */
+.login, .Admin, .Staff {
+    position: absolute;
+    top: 0;
+    left: 0; /* Use left instead of width for positioning */
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    transition: transform 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+/* Initial positions for horizontal slide (User active in middle) */
+#user:checked ~ .login { transform: translateX(0%); }
+#user:checked ~ .Admin { transform: translateX(-100%); }
+#user:checked ~ .Staff { transform: translateX(100%); }
+
+/* Positions when Admin is active (slides in from left) */
+#admin:checked ~ .login { transform: translateX(100%); }
+#admin:checked ~ .Admin { transform: translateX(0%); }
+#admin:checked ~ .Staff { transform: translateX(200%); }
+
+/* Positions when Staff is active (slides in from right) */
+#staff:checked ~ .login { transform: translateX(-100%); }
+#staff:checked ~ .Admin { transform: translateX(-200%); }
+#staff:checked ~ .Staff { transform: translateX(0%); }
+
+
+/* Label as toggle button */
+label {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #fff;
+    display: block;
+}
+
+.signup_button {
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 25px;
+
+    margin-bottom: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Container for switch links */
+.switch-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+/* Switch link between user, admin, and staff */
+.switch-form-link {
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: normal;
+    text-align: center;
+    cursor: pointer;
+    color: #00aaff;
+    margin-bottom: 0; /* Override default label margin */
+}
+.switch-form-link-admin {
+    font-size: 20px;
+    font-weight: normal;
+    /* text-align: right; */
+    position: absolute;
+    top: 18px;
+    left: 340px;
+
+    cursor: pointer;
+    color: #ffffff;
+    margin-bottom: 0; /* Override default label margin */
+}
+.switch-form-link-staff {
+    font-size: 20px;
+    font-weight: normal;
+    /* text-align: right; */
+    position: absolute;
+    top: 18px;
+    left: 15px;
+
+    cursor: pointer;
+    color: #ffffff;
+    margin-bottom: 0; /* Override default label margin */
+}
+
+.switch-form-link:hover {
+    text-decoration: underline;
+}
+
+/* Input and icons */
+.input {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.input i {
+    color: white;
+    margin-right: 10px;
+}
+
+.input input {
+    border: none;
+    background: transparent;
+    outline: none;
+    color: white;
+    width: 100%;
+    padding: 5px;
+}
+
+/* Button */
+button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #003584;
+}
+
+.loginlogo {
+    font-size: 90px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.logintext {
+    font-size: 25px;
+    text-align: center;
+}

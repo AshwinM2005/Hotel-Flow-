@@ -1,0 +1,272 @@
+.logo img {
+    width: 100px;
+}
+
+body {
+  margin: 0;   /* removes browser default margin */
+  transition: background 1s ease; /* smooth transition */
+  /* background: #f5f5f5; */
+}
+
+.logo {
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+    text-align: center  ;
+    /* padding: 10px 20px; Adds some padding around the navbar */
+    /* background-color: #dd0909; */
+    /* border: 1px solid #ccc; */
+
+}
+
+.btn-group{
+
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    gap: 35px;
+}
+
+    .btn-group button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      background: #dadada;
+      color: #000000;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 1s;
+    }
+
+    .logo button:hover{
+        background-color: rgb(245, 245, 244);
+        
+    }
+
+.btn-group .login {
+    padding: 8px 16px;
+      border: none;
+      border-radius: 10px;
+      background: rgb(255, 36, 36) ;
+      color: #000000;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 1s;
+      
+
+}
+
+.btn-group .login:hover {
+    background: rgb(248, 106, 106);
+}
+
+
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+.content1{
+    display: flex;
+    
+    height: 450px;
+    position: relative;
+}
+
+.leftcon1 {
+    flex: 1;
+    background: #999999;
+}
+
+.rightcon1 {
+    flex: 2;
+      background: url("/Images/user_interface/bdroom2.jpg") no-repeat center;
+      background-size: cover;
+}
+
+ .Acontent1 {
+      position: absolute;
+      top: 50%;
+      left: 31%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .Acontent1 h1 {
+    font-family: "Playfair Display", serif;        
+    color: rgb(255, 236, 168);
+    font-size: 50px;
+    margin: 0 0 20px;
+    line-height: 1.2;
+    }
+
+    .Acontent1 p {
+        color: rgb(255, 255, 255);
+        font-family: "Story Script", sans-serif;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 25px;
+    }
+
+
+    .buttons button {
+            border: none;
+        text-decoration: none;
+        padding: 6px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        }
+
+
+    .buttons a {
+      text-decoration: none;
+      padding: 6px 15px;
+      border-radius: 8px;
+    
+      
+    }
+    
+
+    .btn-primary {
+        font-weight: bold;
+        font-size: 16px;
+      color: #000000;
+      border: none;
+      border-radius: 10px;
+      background: rgb(255, 36, 36) ;
+      cursor: pointer;
+      transition: background 1s;
+    }
+
+    .btn-primary button:hover{
+      background: rgb(248, 106, 106);;
+    }
+
+    .btn-secondary {
+        font-size: 16px;
+        font-weight: bold;
+      /* border: 2px solid white; */
+      color: rgb(0, 0, 0);
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #000000;
+    }
+
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+
+
+
+.where {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 30px;
+}
+.where span {
+  font-size: 15px;
+}
+
+.booking{
+  margin-top: 25px;
+  background-color: #305cde;
+  /* width: 300px; */
+  margin-left: 50px;
+  border-radius: 20px;
+    flex: 0.70;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-right: 30px;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: all 1s ease;
+      z-index: 2;
+}
+
+.bookcontent {
+  padding-top: 30px;
+  margin-left: 25px;
+  font-family: "Quintessential", serif;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.slideimage {
+      flex: 1.30;
+      height: 420px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 1s ease;
+      position: relative;
+      
+
+    }
+
+.search {
+  padding-top: 20px;
+  margin-left: 40px;
+  font-size: 19px;
+}
+
+.booking button {
+  /* align-items: center; */
+  margin-left: 110px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  padding: 4px ;
+  width: 120px;
+}
+
+.booking input {
+  margin-left: 20px;
+  border-radius: 6px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #a4b6ebff;
+}
+
+.booking input[type="text"] {
+  width: 220px;
+  font-size: 16px;
+}
+.booking input[type="date"] {
+  width: 210px;
+}
+
+.section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 95px;
+      /* min-height: 500px; */
+      padding: 40px;
+      overflow: hidden;
+      /* background-color: red; */
+    }
+
+
+    .slideimage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+
+    .show {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+    }
+
+
+
+

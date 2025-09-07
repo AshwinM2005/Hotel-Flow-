@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="LOGINcss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+
+
+    <div class="form-container">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form>
+                
+                <label for="chk" aria-hidden="true">Sign Up  <i class="fa-solid fa-address-card"></i></label>
+                
+                <div class="input">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Name" required><br><br>
+                </div>
+                <div class="input">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" placeholder="Email" required><br><br>
+                </div>
+                <div class="input">
+                    <i class="fa-solid fa-unlock-keyhole"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <br>
+                <button>Sign Up</button>
+            </form>
+        </div>
+
+        <div class="login-wrapper">
+            <input type="radio" name="login-slide" id="user" checked aria-hidden="true">
+            <input type="radio" name="login-slide" id="admin" aria-hidden="true">
+            <input type="radio" name="login-slide" id="staff" aria-hidden="true">
+
+            <div class="login">
+                <form>
+                    <div class="loginlogo">
+                        <i class="fa-regular fa-circle-user"></i>
+                    </div>
+                    <div class="logintext">
+                        <b>User Login</b>
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-at"></i>
+                        <input type="email" placeholder="Email" required><br><br>
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <br>
+                    <button>Login</button>
+                    
+                    <label for="chk" aria-hidden="true" class="signup_button">New Registration? SignUp</label>
+                    <div class="switch-links">
+                        <label for="admin" class="switch-form-link">Admin Login</label>
+                        <label for="staff" class="switch-form-link">Staff Login</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="Admin">
+                <form>
+                    <div class="switch-links">
+                        <label for="user" class="switch-form-link-admin"><i class="fa-solid fa-share"></i></label>
+                     </div>
+                    <div class="loginlogo">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="logintext">
+                        <b>Admin Login</b>
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-at"></i>
+                        <input type="email" placeholder="Email" required><br><br>
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-unlock-keyhole"></i>                        
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <br>
+                    <button>Login</button>
+                     
+                    <!-- <label for="chk" aria-hidden="true" class="signup_button">New Registration? SignUp</label> -->
+                </form>
+            </div>
+
+            <div class="Staff">
+                <form>
+                    <div class="switch-links">
+                        <label for="user" class="switch-form-link-staff"><i class="fa-solid fa-share" style="transform: scaleX(-1);"></i></label>
+    
+                    </div>
+                    <div class="loginlogo">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <div class="logintext">
+                        <b>Staff Login</b>
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-at"></i>
+                        <input type="email" placeholder="Email" required><br><br>
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <br>
+                    <button>Login</button>
+                    
+                    <!-- <label for="chk" aria-hidden="true" class="signup_button">New Registration? SignUp</label> -->
+                </form>
+            </div>
+        </div>
+    </div>
+<!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!javascript !!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    
+    <canvas id="fluid"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="cursor.js"></script>
+</body>
+</html>

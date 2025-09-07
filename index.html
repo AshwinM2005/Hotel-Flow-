@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user_interface</title>
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quintessential&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+    <section >
+        <div>
+            <header class="logo">
+                <!-- <img src="/Images/logo/original_logo.jpg" alt="Hotellogo"> -->
+                <video  id="logoAnimate" muted playsinline width="120">
+                     <source src="/Images/logo/LogoAnimation.webm" type="video/mp4">
+                                Your browser does not support the video tag.
+                </video>
+
+                <div class="btn-group">
+                    <button>Home</button>
+                    <button>Rooms</button>
+                    <button>Dining</button>
+                    <button >About Us</button>
+                    <button class="login" onclick="window.location.href='/login page/login.html';">Login</button>
+                    
+                </div>
+            </header>
+            
+        </div>
+    </section>
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+    <div class="content1"> 
+        <div class="leftcon1"></div>
+        <div class="rightcon1"></div>
+
+       <div class="Acontent1">
+            <h1>
+                Welcome to <br>
+                Hotel Flow
+            </h1>
+            <p>
+                Discover the ultimate hospitality and luxurious <br>
+                experience with our top-notch hotel.
+            </p>
+            <div class="buttons">
+                <a href="#" class="btn-secondary">Explore Now !!</a>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!BOOKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <section >
+        <div class="where">
+            Your Perfect Stay Is Just A Step Away <br> 
+            <span>get exclusive deal on our world-wide hotels with best prising and hassel-free cancellation </span>
+        </div>
+    </section>
+
+    <section class="section">
+
+        
+        <div class="booking">
+            <p class="bookcontent">Book Your Nearest Hottel Hear</p>
+            <p class="search" ><b>Where To Stay ?</b><br>
+                <input type="text" placeholder="Enter Your Destination"><br>
+                <b>Check-In Date: </b><br>
+                <input type="date" placeholder="From"><br>
+                <b>Check-Out Date: </b><br>
+                <input type="date" placeholder="Till">
+            </p>
+            
+
+            <button class="btn-primary" onclick="window.location.href='/login page/login.html';">Search</button>
+        </div>
+
+        <div class="slideimage">
+
+        </div>
+
+    </section>
+    
+    <section>
+        
+
+
+
+
+
+    </section>
+
+
+
+
+
+<script src="index.js"></script>
+</body>
+</html>
