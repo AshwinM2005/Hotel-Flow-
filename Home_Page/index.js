@@ -45,12 +45,12 @@ observer2.observe(targetSection);
     // Images to cycle
     let current = 0;
     const images = [
-      "Images/user_interface/slidingimg1.jpg",
-    "Images/user_interface/slideimg3.webp",
-    "Images/user_interface/slidingimg4.webp",
-    "Images/user_interface/slidingimg6.jpg",
-    "Images/user_interface/slidingimg7.jpg",
-    "Images/user_interface/slidingimg8.jpg"
+      "/Images/user_interface/slidingimg1.jpg",
+    "/Images/user_interface/slideimg3.webp",
+    "/Images/user_interface/slidingimg4.webp",
+    "/Images/user_interface/slidingimg6.jpg",
+    "/Images/user_interface/slidingimg7.jpg",
+    "/Images/user_interface/slidingimg8.jpg"
 
     ];
 
