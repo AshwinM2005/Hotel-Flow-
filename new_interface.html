@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Hotel Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the new dashboard interface */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f8fc;
+        }
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-hidden {
+            transform: translateX(-100%);
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Custom scrollbar */
+        main::-webkit-scrollbar {
+            width: 6px;
+        }
+        main::-webkit-scrollbar-track {
+            background: #f7f8fc;
+        }
+        main::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        main::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-gray-100">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="bg-white text-gray-800 w-64 fixed inset-y-0 left-0 z-30 transform md:relative md:translate-x-0 transition-transform duration-300 ease-in-out sidebar-hidden md:sidebar-visible flex-shrink-0 flex flex-col border-r">
+        <div class="flex items-center justify-center p-6">
+            <h1 class="text-2xl font-bold text-blue-600"><i class="fas fa-hotel mr-2"></i>Hotel Bliss</h1>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <a href="#" class="flex items-center px-4 py-2.5 text-white bg-blue-600 rounded-lg shadow">
+                <i class="fas fa-home w-6 h-6 mr-3"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                <i class="fas fa-calendar-plus w-6 h-6 mr-3"></i>
+                <span>New Booking</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                <i class="fas fa-briefcase w-6 h-6 mr-3"></i>
+                <span>My Bookings</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                <i class="fas fa-file-invoice w-6 h-6 mr-3"></i>
+                <span>My Documents</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                <i class="fas fa-concierge-bell w-6 h-6 mr-3"></i>
+                <span>Hotel Services</span>
+            </a>
+        </nav>
+        <div class="p-6 border-t">
+             <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                <i class="fas fa-user-circle w-6 h-6 mr-3"></i>
+                <span>Profile</span>
+            </a>
+             <a href="#" class="flex items-center w-full px-4 py-2.5 mt-2 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt w-6 h-6 mr-3"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="flex items-center justify-between p-4 bg-white border-b">
+            <!-- Mobile Menu Button -->
+            <button id="menu-button" class="md:hidden text-gray-600 hover:text-blue-600">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800">Hello, Alex!</h2>
+                <p class="text-gray-500 text-sm">Welcome to your personal dashboard.</p>
+            </div>
+            <div class="flex items-center space-x-6">
+                <button class="text-gray-500 hover:text-blue-600 text-xl"><i class="fas fa-bell"></i></button>
+                <button class="text-gray-500 hover:text-blue-600 text-xl"><i class="fas fa-cog"></i></button>
+                <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=A" alt="User Avatar" class="w-11 h-11 rounded-full border-2 border-blue-500 p-0.5">
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                <!-- Left Column -->
+                <div class="xl:col-span-2">
+                    <!-- Upcoming Stay Card -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm card">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Your Upcoming Stay</h3>
+                                <p class="text-gray-500">Deluxe King Suite</p>
+                            </div>
+                            <span class="mt-2 sm:mt-0 text-sm font-medium text-green-800 bg-green-100 px-3 py-1 rounded-full">Confirmed</span>
+                        </div>
+                        <div class="h-48 bg-cover bg-center rounded-lg" style="background-image: url('https://placehold.co/600x200/3B82F6/FFFFFF?text=Hotel+View')"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 text-center">
+                             <div>
+                                <p class="text-sm text-gray-500">Check-in</p>
+                                <p class="font-semibold text-gray-800 text-lg">Oct 25</p>
+                                <p class="font-medium text-gray-600">3:00 PM</p>
+                            </div>
+                             <div>
+                                <p class="text-sm text-gray-500">Check-out</p>
+                                <p class="font-semibold text-gray-800 text-lg">Oct 28</p>
+                                <p class="font-medium text-gray-600">11:00 AM</p>
+                            </div>
+                             <div>
+                                <p class="text-sm text-gray-500">Guests</p>
+                                <p class="font-semibold text-gray-800 text-lg">2 Adults</p>
+                                <p class="font-medium text-gray-600">1 Child</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Quick Actions -->
+                    <div class="mt-8">
+                         <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Actions</h3>
+                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="bg-white p-4 rounded-xl shadow-sm text-center card">
+                                <i class="fas fa-utensils text-2xl text-blue-500"></i>
+                                <p class="font-semibold mt-2 text-gray-700">Restaurant</p>
+                            </div>
+                             <div class="bg-white p-4 rounded-xl shadow-sm text-center card">
+                                <i class="fas fa-spa text-2xl text-pink-500"></i>
+                                <p class="font-semibold mt-2 text-gray-700">Spa & Wellness</p>
+                            </div>
+                             <div class="bg-white p-4 rounded-xl shadow-sm text-center card">
+                                <i class="fas fa-car text-2xl text-yellow-500"></i>
+                                <p class="font-semibold mt-2 text-gray-700">Transport</p>
+                            </div>
+                             <div class="bg-white p-4 rounded-xl shadow-sm text-center card">
+                                <i class="fas fa-concierge-bell text-2xl text-purple-500"></i>
+                                <p class="font-semibold mt-2 text-gray-700">Room Service</p>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-8">
+                    <!-- Verification Card -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm card">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Verification Status</h3>
+                        <div class="flex items-center p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
+                             <i class="fas fa-exclamation-triangle text-yellow-500 text-2xl"></i>
+                             <div class="ml-4">
+                                <p class="font-semibold text-yellow-800">Pending</p>
+                                <p class="text-sm text-yellow-700">Upload documents for faster check-in.</p>
+                             </div>
+                        </div>
+                        <button class="mt-4 w-full text-center bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition-colors">
+                            Upload ID
+                        </button>
+                    </div>
+
+                    <!-- Loyalty Points Card -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm card">
+                         <h3 class="text-xl font-bold text-gray-800 mb-4">Loyalty Rewards</h3>
+                         <div class="text-center bg-blue-50 p-6 rounded-lg">
+                            <p class="text-5xl font-bold text-blue-600">1,250</p>
+                            <p class="text-gray-500 mt-1">Points Balance</p>
+                        </div>
+                         <button class="mt-4 w-full text-center bg-gray-200 text-gray-700 py-2.5 rounded-lg hover:bg-gray-300 transition-colors">
+                            View Rewards
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
+    
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuButton = document.getElementById('menu-button');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('sidebar-hidden');
+            overlay.classList.toggle('hidden');
+        }
+
+        menuButton.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+    </script>
+
+</body>
+</html>
+
