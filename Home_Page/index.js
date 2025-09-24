@@ -35,51 +35,48 @@ const observer2 = new IntersectionObserver((entries) => {
 
 observer2.observe(targetSection);
 
+
+
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //  slide Image 
+const content = document.querySelector('.booking');
+const imageBox = document.querySelector('.slideimage');
 
-    const content = document.querySelector('.booking');
-    const imageBox = document.querySelector('.slideimage');
+// Images to cycle
+let current = 0;
+const images = [
+  "/Images/user_interface/slidingimg1.jpg",
+  "/Images/user_interface/slideimg3.webp",
+  "/Images/user_interface/slidingimg4.webp",
+  "/Images/user_interface/slidingimg6.jpg",
+  "/Images/user_interface/slidingimg7.jpg",
+  "/Images/user_interface/slidingimg8.jpg"
+];
 
-    // Images to cycle
-    let current = 0;
-    const images = [
-      "/Images/user_interface/slidingimg1.jpg",
-    "/Images/user_interface/slideimg3.webp",
-    "/Images/user_interface/slidingimg4.webp",
-    "/Images/user_interface/slidingimg6.jpg",
-    "/Images/user_interface/slidingimg7.jpg",
-    "/Images/user_interface/slidingimg8.jpg"
+// set first image
+imageBox.style.backgroundImage = `url(${images[current]})`;
 
-    ];
+// Function to start slideshow
+function startSlideshow() {
+  content.classList.add('show');
+  imageBox.classList.add('show');
 
-    
-    imageBox.style.backgroundImage = `url(${images[current]})`;
-
+  if (!imageBox.dataset.slideshowStarted) {
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      imageBox.style.backgroundImage = `url(${images[current]})`;
+    }, 3000);
+    imageBox.dataset.slideshowStarted = "true";
+  }
+}
 
 // Slide-in observer
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Slide in
-      content.classList.add('show');
-      imageBox.classList.add('show');
-
-      // Start slideshow once visible
-      if (!imageBox.dataset.slideshowStarted) {
-        // 🔹 Fix: set first image immediately
-        imageBox.style.backgroundImage = `url(${images[0]})`;
-
-        setInterval(() => {
-          current = (current + 1) % images.length;
-          imageBox.style.backgroundImage = `url(${images[current]})`;
-        }, 3000);
-
-        imageBox.dataset.slideshowStarted = "true";
-      }
+      startSlideshow();
     } else {
-      // Slide out
       content.classList.remove('show');
       imageBox.classList.remove('show');
     }
@@ -88,6 +85,15 @@ const observer = new IntersectionObserver((entries) => {
 
 observer.observe(content);
 observer.observe(imageBox);
+
+// ✅ Reload-safe check
+window.addEventListener("load", () => {
+  const rect = content.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    startSlideshow(); // run immediately if already visible
+  }
+});
+
 
 
 

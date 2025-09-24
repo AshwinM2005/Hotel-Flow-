@@ -1,28 +1,41 @@
 // input sign in  
 
-const Username  = document.querySelector(".username");
-const Email  = document.querySelector(".email");
-const Password  = document.querySelector(".password");
-const submit = document.querySelector(".Register");
+let Username  = document.querySelector(".username");
+let Email  = document.querySelector(".email");
+let Password  = document.querySelector(".password");
+let submit = document.querySelector(".Register");
 
 let Data ;
 let DataList = [];
 
-submit.addEventListener("click",() => {
-    // e.preventDefault();
-    if ( Username.value != "" && Email.value != "" && Password.value != ""  ) {
-            console.log(" Submit ");
-            Data = {
-                username : Username.value,
-                email : Email.value,
-                password : Password.value
-            }
-            DataList.push(Data);
-            console.log(DataList);
 
+
+submit.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const Data = {
+        username: document.querySelector(".username").value,
+        email: document.querySelector(".email").value,
+        password: document.querySelector(".password").value
+    };
+
+    fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Data)
+    })
+    .then(res => res.text())
+    .then(msg => {
+      Swal.fire({
+    icon: msg.includes("❌") ? 'error' : 'success',
+    title: msg.includes("❌") ? 'Oops...' : 'Success',
+    text: msg,
+    confirmButtonText: 'OK'
+  }).then(() => {
+    // Only reload if success
+    if (msg.includes("✅")) {
+      window.location.reload(); // reloads the page
     }
-
-
-
+  });
 })
-
+})
