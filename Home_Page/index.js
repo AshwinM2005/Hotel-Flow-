@@ -79,7 +79,7 @@ const observer = new IntersectionObserver((entries) => {
       imageBox.classList.remove('show');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.14 });
 
 observer.observe(content);
 observer.observe(imageBox);
@@ -94,3 +94,96 @@ window.addEventListener("load", () => {
 
 
 
+// #######################################################3/
+// Feature Text Animation & Scroll Snapping
+
+  const featureTexts = document.querySelectorAll('.feature-text');
+  const stickyParent = document.querySelector('.sticky-parent');
+  if (featureTexts.length > 0 ) {
+    // Observer for the fade/translate animation
+    const featureObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-active');
+        } else {
+          entry.target.classList.remove('is-active');
+        }
+      });
+    }, {
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    });
+
+    featureTexts.forEach(text => {
+      featureObserver.observe(text);
+    });
+      
+    // // Observer to change body background for the sticky section
+    // const stickyBgObserver = new IntersectionObserver(entries => {
+    //     entries.forEach(entry => {
+    //         if(entry.isIntersecting) {
+    //             document.body.style.backgroundColor = '#1a1a1a';
+    //             document.body.classList.add('sticky-active');
+    //         } else {
+    //             document.body.style.backgroundColor = '#f5f5f5';
+    //             document.body.classList.remove('sticky-active');
+    //         }
+    //     });
+    // }, { threshold: 0.1 });
+      
+    // stickyBgObserver.observe(stickyParent);
+
+    // --- CORRECTED: Scroll Snapping Logic ---
+    let scrollTimeout;
+    let isProgrammaticallyScrolling = false;
+
+    const snapToClosestFeature = () => {
+        let closestElement = null;
+        let minDistance = Infinity;
+        // The target position: 40% from the top of the viewport
+        const snapPosition = window.innerHeight * 0.4;
+
+        featureTexts.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            // Only consider elements that are at least partially in the viewport
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                const elementCenter = rect.top + rect.height / 2;
+                const distance = Math.abs(elementCenter - snapPosition);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestElement = el;
+                }
+            }
+        });
+
+        if (closestElement) {
+            isProgrammaticallyScrolling = true;
+            
+            // This new calculation is more accurate.
+            // It finds the difference between the element's current center and the target snap position.
+            const elementRect = closestElement.getBoundingClientRect();
+            const elementCenter = elementRect.top + elementRect.height / 2;
+            const scrollDelta = elementCenter - snapPosition;
+
+            // Then, it scrolls by that exact difference.
+            window.scrollBy({
+                top: scrollDelta,
+                behavior: 'smooth'
+            });
+
+            // Prevent this function from running again while the smooth scroll animation is playing
+            setTimeout(() => {
+                isProgrammaticallyScrolling = false;
+            }, 500); 
+        }
+    };
+
+    window.addEventListener('scroll', () => {
+        // Don't snap if the page is already in the middle of a snap animation
+        if (isProgrammaticallyScrolling) return;
+        // Wait for the user to stop scrolling for 150ms, then trigger the snap
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(snapToClosestFeature, 100);
+    }, { passive: true });
+  }
