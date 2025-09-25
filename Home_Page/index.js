@@ -1,4 +1,4 @@
- const logoVideo = document.getElementById("logoAnimate");
+const logoVideo = document.getElementById("logoAnimate");
 
 // Autoplay once when page loads
 window.addEventListener("load", () => {
@@ -9,14 +9,14 @@ window.addEventListener("load", () => {
   });
 });
 
-    // Restart with delay after finishing
-    logoVideo.addEventListener("ended", () => {
-      setTimeout(() => {
-        logoVideo.play();
-      }, 3000); // 3000 ms = 3 sec delay before replay
-    });
+// Restart with delay after finishing
+logoVideo.addEventListener("ended", () => {
+  setTimeout(() => {
+    logoVideo.play();
+  }, 3000); // 3000 ms = 3 sec delay before replay
+});
 
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //  CHANGING Background 
 
 const targetSection = document.querySelector(".section"); // your section
@@ -34,8 +34,6 @@ const observer2 = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 }); // 80%
 
 observer2.observe(targetSection);
-
-
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -93,9 +91,6 @@ window.addEventListener("load", () => {
     startSlideshow(); // run immediately if already visible
   }
 });
-
-
-
 
 
 
