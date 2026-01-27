@@ -14,7 +14,7 @@ function Doc_Status() {
           </div>
         </div>
 
-        <button>upload Id</button>
+        <button>Upload Id</button>
     </div>
   )
 }
