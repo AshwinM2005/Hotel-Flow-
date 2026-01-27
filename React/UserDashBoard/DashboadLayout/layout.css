@@ -1,0 +1,613 @@
+/* ===============================
+   GLOBAL RESET & BASE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  background-color: #f7f8fc;
+  color: #1f2937;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+.dashboard_layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* Keeps the outer frame fixed on desktop */
+  background-color: #f7f8fc;
+}
+
+/* ===============================
+   SIDEBAR
+================================ */
+.sidebar {
+  width: 256px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex-shrink: 0; /* Prevents sidebar from shrinking */
+}
+
+.sidebar .logo {
+  padding: 24px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2563eb;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sidebar nav {
+  flex: 1;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar nav div {
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar nav div:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.sidebar nav div.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.slide-div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.menu {
+  flex: 1.77;
+}
+
+/* Sidebar Footer */
+.side_footer {
+  flex: 0.23;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side_footer div {
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #4b5563;
+}
+
+.side_footer div:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+/* ===============================
+   MAIN SECTION
+================================ */
+.main-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* ENABLES SCROLLING */
+  height: 100vh;    /* Ensures it fills height */
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0; /* Keeps header from shrinking when scrolling */
+}
+
+/* ===============================
+   LEFT SIDE (GREETING)
+================================ */
+
+.header-section > div:first-child {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ===============================
+   RIGHT SIDE (ACTIONS)
+================================ */
+
+.header-section > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-section p {
+  font-size: 15px;
+  font-weight: 400;
+}
+/* Individual action items */
+.header-section span {
+  font-size: 15px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header-section span:hover {
+  color: #2563eb;
+}
+
+/* ===============================
+   CONTENT GRID
+================================ */
+
+.content-section {
+  padding: 20px;
+  display: flex;
+  gap: 25px;
+  /* CHANGED: Removed fixed height so it grows with content */
+  height: auto; 
+  min-height: 100%;
+}
+
+.left-content {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Adds space between stacked cards */
+}
+
+.right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Adds space between stacked cards */
+}
+
+/* ===============================
+   UPCOMING STAY CARD
+================================ */
+
+.upcoming-stay-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upcoming-stay-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   HEADER (TITLE + STATUS)
+================================ */
+
+.stay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows wrapping on small screens */
+  gap: 10px;
+}
+
+.stay-header h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.stay-header p {
+  font-size: 20px;
+  color: #454c58;
+  margin-top: 4px;
+}
+
+/* Status badge */
+.stay-status {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ===============================
+   IMAGE / BANNER
+================================ */
+
+.stay-image {
+  height: 180px;
+  border-radius: 14px;
+  background-color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+/* ===============================
+   INFO GRID (CHECK-IN, CHECK-OUT, GUESTS)
+================================ */
+
+.stay-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.stay-info p:first-child {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.stay-info p:nth-child(2) {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.stay-info p:last-child {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.quick-action-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.quick-action {
+  padding: 6px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.restaurent-display,
+.RoomService-display,
+.Transport-display {
+  background-color: #e5e2e2;
+  padding: 20px;
+  border-radius: 18px;
+  text-align: center;
+  font-size: large;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Added pointer for better UX */
+}
+
+.restaurent-display:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.12);
+}
+.RoomService-display:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.12);
+}
+.Transport-display:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.12);
+}
+
+/* right css */
+
+/* ===============================
+   DOC STATUS CARD
+================================ */
+
+.doc-status-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 27px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doc-status-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   TITLE
+================================ */
+
+.doc-status-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ===============================
+   STATUS BOX (PENDING)
+================================ */
+
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #fffbeb;
+  border-left: 4px solid #facc15;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/* icon (optional) */
+.status-box i {
+  font-size: 22px;
+  color: #f59e0b;
+}
+
+/* status text */
+.status-box h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.status-box p {
+  font-size: 14px;
+  color: #a16207;
+  margin-top: 2px;
+}
+
+/* ===============================
+   ACTION BUTTON
+================================ */
+
+.doc-status-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 4px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.doc-status-card button:hover {
+  background-color: #1d4ed8;
+}
+
+/* ===============================
+   PENDING STATUS BOX SPECIFIC
+================================ */
+
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #fffbeb; /* light yellow */
+  border-left: 6px solid #facc15; /* yellow strip */
+  padding: 18px 20px;
+  border-radius: 14px;
+}
+
+/* Icon circle */
+.status-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #facc15;
+  color: #92400e;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Text container */
+.status-text h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 4px;
+}
+
+.status-text p {
+  font-size: 15px;
+  color: #a16207;
+  line-height: 1.4;
+}
+
+/* ===============================
+   LOYALTY REWARDS CARD
+================================ */
+
+.rewards-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rewards-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   TITLE
+================================ */
+
+.rewards-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ===============================
+   POINTS DISPLAY BOX
+================================ */
+
+.rewards-box {
+  background-color: #eff6ff;
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rewards-box h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #2563eb;
+  line-height: 1;
+}
+
+.rewards-box p {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #424854;
+}
+
+/* ===============================
+   ACTION BUTTON
+================================ */
+
+.rewards-card button {
+  margin-top: 6px;
+  width: 100%;
+  padding: 14px;
+  background-color: #bdbec0;
+  color: #15181b;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.rewards-card button:hover {
+  background-color: #d1d5db;
+}
+
+@media (max-width: 1024px) {
+  /* Stack Content Vertically on Tablets/Small Laptops */
+  .content-section {
+    flex-direction: column;
+  }
+  
+  .left-content, 
+  .right-content {
+    flex: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .dashboard_layout {
+    flex-direction: column;
+    height: auto;
+    overflow-y: visible; /* Let whole page scroll */
+  }
+
+  /* 2. Sidebar adjustments for mobile */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .sidebar nav {
+    flex-direction: row; /* Horizontal Menu */
+    overflow-x: auto;
+    padding: 10px;
+  }
+  
+  .sidebar nav div {
+    white-space: nowrap;
+  }
+  
+  .side_footer {
+    display: none; /* Often hidden on mobile to save space */
+  }
+  
+  /* 3. Header adjustments */
+  .header-section {
+    padding: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .header-section > div:last-child {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* 4. Content Area */
+  .main-section {
+    height: auto;
+    overflow: visible;
+  }
+  
+  .content-section {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .stay-info {
+    grid-template-columns: 1fr; 
+    gap: 15px;
+  }
+  
+  .quick-action-card {
+    grid-template-columns: 1fr; 
+  }
+  
+  .stay-image {
+    height: 140px; 
+  }
+}

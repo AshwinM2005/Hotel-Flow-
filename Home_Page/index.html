@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user_interface</title>
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quintessential&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    
+    <section >
+        <div>
+            <header class="logo">
+                <!-- <img src="/Images/logo/original_logo.jpg" alt="Hotellogo"> -->
+                <video  id="logoAnimate" muted playsinline width="120">
+                     <source src="/Images/logo/LogoAnimation.webm" type="video/mp4">
+                                Your browser does not support the video tag.
+                </video>
+
+                <div class="btn-group">
+                    <button>Home</button>
+                    <button>Rooms</button>
+                    <button>Dining</button>
+                    <button >About Us</button>
+                    <button class="login" onclick="window.location.href='/login page/login.html';">Login</button>
+                    
+                </div>
+            </header>
+            
+        </div>
+    </section>
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+    <div class="content1"> 
+        <div class="leftcon1"></div>
+        <div class="rightcon1"></div>
+
+       <div class="Acontent1">
+            <h1>
+                Welcome to <br>
+                Hotel Flow
+            </h1>
+            <p>
+                Discover the ultimate hospitality and luxurious <br>
+                experience with our top-notch hotel.
+            </p>
+            <div class="buttons">
+                <a href="#" class="btn-secondary">Explore Now !!</a>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!BOOKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <section >
+        <div class="where">
+            Your Perfect Stay Is Just A Step Away <br> 
+            <span>get exclusive deal on our world-wide hotels with best prising and hassel-free cancellation </span>
+        </div>
+    </section>
+
+    <section class="section">
+
+        
+        <div class="booking">
+            <p class="bookcontent">Book Your Nearest Hottel Hear</p>
+            <p class="search" ><b>Where To Stay ?</b><br>
+                <input type="text" placeholder="Enter Your Destination"><br>
+                <b>Check-In Date: </b><br>
+                <input type="date" placeholder="From"><br>
+                <b>Check-Out Date: </b><br>
+                <input type="date" placeholder="Till">
+            </p>
+            
+
+            <button class="btn-primary" onclick="window.location.href='/login page/login.html';">Search</button>
+        </div>
+
+        <div class="slideimage">
+
+        </div>
+
+    </section>
+    
+    <section class="about-section">
+        <div class="container123">
+            <div class="about">About Us ?</div>
+            <div class="section-title">
+                <h2>A Story of Comfort & Style</h2>
+                <p>Experience a stay that is as inspiring as it is relaxing, crafted with you in mind.</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text-wrapper">
+                    <div class="about-text">
+                        <h4>EXCLUSIVE SANCTUARY</h4>
+                        <h3>Presidential Suite</h3>
+                        <p>
+                            Indulge in the pinnacle of luxury in our Presidential Suite. Offering panoramic city views, bespoke furnishings, and unparalleled service, it’s a sophisticated retreat designed for discerning guests seeking an extraordinary experience.
+                        </p>
+                        <a href="#" class="btn-about">Explore Suites</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="/Images/user_interface/hotel_image325.avif" alt="Luxurious hotel suite with a large bed and modern decor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ############################################################################# -->
+    <div>
+        <div class="features">Features</div>
+        <section class="sticky-parent">
+            <!-- Left Column: Scrolling Text (Foreground) -->
+            <div class="left-column">
+                <div class="feature-text">
+                    <h3>Fine Dining Experience 🍽️</h3>
+                    <p>✨ Our restaurant offers a comfortable and elegant place to dine with family and friends.
+                       <br><br> ✨ Taste a variety of fresh and flavorful dishes prepared just for you. Just
+Relax and enjoy a warm, welcoming dining atmosphere during your stay.
+                    </p>
+                </div>
+                <div class="feature-text">
+                    <h3>Affordable Pricing 💰</h3>
+                    <p style="text-align: left; margin-left: 30px;"> ✨ Experience premium comfort without breaking the bank.
+                        <br><br>✨ Enjoy world-class hospitality at rates that suit every budget.</p>
+                </div>
+                <div class="feature-text">
+                    <h3>Event & Wedding Planner Support 💍</h3>
+                    <p>✨ Turn your special day into a lifetime memory with our dedicated event and wedding planner support.
+                       <br><br>✨ From elegant décor to flawless arrangements, we ensure every detail is picture-perfect.</p>
+                </div>
+                <div class="feature-text">
+                    <h3>Smart QR Check-In 📲</h3>
+                    <p style="text-align: left; margin-left: 30px;">  ✨ Skip the waiting line with our quick and secure QR-based check-in.  
+                        <br><br>✨ Just scan, unlock, and step into your comfort instantly.</p>
+                </div>
+                <div class="feature-text">
+                    <h3>Free Wi-Fi & Smart Facilities 🌐</h3>
+                    <p>✨ Stay seamlessly connected with our high-speed complimentary Wi-Fi available throughout the property. <br><br>
+                    ✨ Enjoy modern smart facilities including keyless room access, smart TVs, and automated room controls for your comfort.</p>
+                </div>
+            </div>
+
+            <!-- Right Column: Sticky Image (Background) -->
+            <div class="right-column">
+                <div class="sticky-image">
+                    <img src="/Images/user_interface/feature_image.jpg" alt="Modern hotel room with a clean, minimalist design">
+                </div>
+            </div>
+        </section>
+
+        </div>
+<script src="index.js"></script>
+</body>
+</html>
