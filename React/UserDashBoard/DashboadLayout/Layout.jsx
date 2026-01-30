@@ -10,7 +10,7 @@ import Transport from './Card_components/Transport'
 import RoomService from './Card_components/RoomService'
 
 
-function Layout() {
+function UserDashBoard_Layout() {
   return (
     <div className='dashboard_layout'>
         
@@ -46,4 +46,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default UserDashBoard_Layout;

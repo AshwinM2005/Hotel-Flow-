@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Book Your Stay | Luxurious Hotel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+
+        /* Hotel Header */
+        .hotel-header {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 24px;
+        }
+
+        .hotel-img {
+            height: 260px;
+            border-radius: 12px;
+            background: url("https://images.unsplash.com/photo-1566073771259-6a8506099945") center/cover;
+        }
+
+        .hotel-info h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            color: #f59e0b;
+            margin-bottom: 12px;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .amenity {
+            background: #eef2ff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* Booking Form */
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+            color: #374151;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            font-size: 15px;
+        }
+
+        /* Room Cards */
+        .room-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .room-card input {
+            width: auto;
+        }
+
+        .room-name {
+            font-weight: 600;
+        }
+
+        /* Summary */
+        .summary {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .book-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .book-btn:hover {
+            background: #1e40af;
+        }
+
+        @media (max-width: 900px) {
+            .hotel-header,
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Hotel Info -->
+    <div class="card hotel-header">
+        <div class="hotel-img"></div>
+        <div class="hotel-info">
+            <h1>Luxurious Hotel</h1>
+            <div class="rating">★★★★★ (4.8)</div>
+            <p>Experience premium comfort in the heart of the city with world-class service.</p>
+
+            <div class="amenities">
+                <div class="amenity">Free Wi-Fi</div>
+                <div class="amenity">Breakfast</div>
+                <div class="amenity">Swimming Pool</div>
+                <div class="amenity">Parking</div>
+                <div class="amenity">AC Rooms</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="booking-grid">
+
+        <!-- Left -->
+        <div class="card">
+            <div class="section-title">Your Stay Details</div>
+
+            <div class="form-row">
+                <div>
+                    <label>Check-in</label>
+                    <input type="date">
+                </div>
+                <div>
+                    <label>Check-out</label>
+                    <input type="date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label>Adults</label>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Children</label>
+                    <select>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-title">Select Room</div>
+
+            <div class="room-card">
+                <div>
+                    <div class="room-name">Deluxe Room</div>
+                    <small>King Bed · Breakfast Included</small>
+                </div>
+                <div>
+                    ₹4,500/night
+                    <input type="radio" name="room">
+                </div>
+            </div>
+
+            <div class="room-card">
+                <div>
+                    <div class="room-name">Executive Room</div>
+                    <small>Large Room · City View</small>
+                </div>
+                <div>
+                    ₹5,800/night
+                    <input type="radio" name="room">
+                </div>
+            </div>
+
+            <div class="room-card">
+                <div>
+                    <div class="room-name">Suite</div>
+                    <small>Luxury Suite · Living Area</small>
+                </div>
+                <div>
+                    ₹8,200/night
+                    <input type="radio" name="room">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div class="card summary">
+            <div class="section-title">Price Summary</div>
+
+            <div class="summary-row">
+                <span>Room Charges</span>
+                <span>₹13,500</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Taxes</span>
+                <span>₹1,620</span>
+            </div>
+
+            <hr style="margin: 16px 0;">
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>₹15,120</span>
+            </div>
+
+            <button class="book-btn">Confirm Booking</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

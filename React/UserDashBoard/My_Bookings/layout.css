@@ -1,0 +1,126 @@
+/* Container */
+.booking-card {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.2s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Header & Image */
+.card-header {
+  position: relative;
+  height: 160px;
+}
+
+.hotel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  background-color: #fff8e1; /* Light Yellow */
+  color: #f57c00;            /* Orange Text */
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Body */
+.card-body {
+  padding: 16px;
+}
+
+.hotel-name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.booking-dates {
+  margin: 4px 0 16px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Info Grid */
+.booking-info-grid {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item .label {
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.info-item .value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Footer & Buttons */
+.card-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.btn-outline:hover {
+  background: #f3f4f6;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
