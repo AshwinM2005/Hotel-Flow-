@@ -6,13 +6,11 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* ================= BOOKING PAGE ================= */
-/* This sits INSIDE dashboard-content */
 .booking-page {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: -12px; /* 🔑 pulls content slightly UP */
+  margin-top: -12px; 
 }
 
 /* Header */
@@ -29,8 +27,6 @@
   color: #6b7280;
 }
 
-/* ================= SCROLL AREA ================= */
-/* Uses dashboard height, no 100vh here */
 .cards-scroll-area {
   max-height: calc(100vh - 160px); /* 🔑 fills more screen */
   overflow-y: auto;

@@ -161,11 +161,11 @@ body {
 /* base link style */
 .sidebar-link {
   display: block;
-  padding: 12px 16px;
-  margin: 6px 0;
+  padding: 10px 16px;
+  margin: 3px 0;
   text-decoration: none;
-  color: #5b708e;
-  font-size: 15px;
+  color: #000000;
+  font-size: 16px;
   border-radius: 10px;
   transition: background 0.2s ease, color 0.2s ease;
 }

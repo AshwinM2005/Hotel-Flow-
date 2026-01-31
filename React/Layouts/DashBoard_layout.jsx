@@ -1,15 +1,18 @@
 import React from 'react'
+import { useEffect ,useRef} from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import "./layout.css"
 import Sidebar_Layout from './Sidebar_Layout'
 
-function DashBoard_layout() {
+function DashBoard_layout({role}) {
+
   return (
     <div className='dashboard_layout'>
         
             <aside className='sidebar'>
-                <Sidebar_Layout/>
+                <Sidebar_Layout role={role}/>
             </aside>
 
             <main className='main-section'>

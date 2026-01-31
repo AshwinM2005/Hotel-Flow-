@@ -8,8 +8,8 @@ function Side_content() {
         <NavLink to="/" end className="sidebar-link">Home</NavLink>
         <NavLink to="new-booking"  className="sidebar-link">New Booking</NavLink>
         <NavLink to="my_bookings"  className="sidebar-link">My Bookings</NavLink>
-        <NavLink to=""  className="sidebar-link">My Documents</NavLink>
-        <NavLink to=""  className="sidebar-link">Hotel Services</NavLink>
+        <NavLink to="document"  className="sidebar-link">My Documents</NavLink>
+        <NavLink to="service"  className="sidebar-link">Hotel Services</NavLink>
         
     </>
   )

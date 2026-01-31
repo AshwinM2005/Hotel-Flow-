@@ -1,0 +1,364 @@
+.admin-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  width: 100%;
+  min-height: 120px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  justify-content: space-between;
+}
+
+
+.admin-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-card-title {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.admin-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #ecfdf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Value */
+.admin-card-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 6px;
+}
+
+/* Trend */
+.admin-card-trend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.trend-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.trend-badge.up {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.trend-badge.down {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.trend-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+
+.admin-card.success .admin-card-icon {
+  background: #dcfce7;
+}
+
+.admin-card.danger .admin-card-icon {
+  background: #fee2e2;
+}
+
+.admin-card.default .admin-card-icon {
+  background: #eef2ff;
+}
+
+.admin-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: start;
+  grid-auto-flow: dense;
+}
+
+
+
+
+
+/* ////////////////////////////////////////////Rating card///////////////////////////////////////////////// */
+
+/* ===== RATING CARD ===== */
+.rating-card {
+  margin-left: 20px;
+  min-height: 200px;    
+  justify-content: space-between;
+  align-self: start;
+  padding: 24px;
+}
+
+.rating-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.rating-max {
+  font-size: 14px;
+  color: #6b7280;
+  margin-left: 4px;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star-filled {
+  fill: #f59e0b;
+  color: #f59e0b;
+}
+
+.star-empty {
+  color: #d1d5db;
+}
+
+.rating-reviews {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ///////////////////////////////////room Availability ////////////////////////////////////////////// */
+
+/* ===============================
+   ROOM AVAILABILITY CARD
+   =============================== */
+
+.room-availability-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 330px;
+  margin-top: -30px;
+}
+
+/* ---------- Header ---------- */
+
+.room-availability-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-availability-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.room-availability-menu {
+  font-size: 20px;
+  color: #9ca3af;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ---------- Availability Bar ---------- */
+
+.room-availability-bar {
+  display: flex;
+  height: 14px;
+  width: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.room-bar {
+  height: 100%;
+}
+
+/* Bar colors */
+.room-bar.occupied {
+  background: #d1fae5;
+}
+
+.room-bar.reserved {
+  background: #fef9c3;
+}
+
+.room-bar.available {
+  background: #fde68a;
+}
+
+.room-bar.not-ready {
+  background: #e5e7eb;
+}
+
+/* ---------- Stats Grid ---------- */
+
+.room-availability-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 24px;
+}
+
+/* Individual stat */
+.room-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Vertical indicator */
+.room-stat-indicator {
+  width: 6px;
+  height: 26px;
+  border-radius: 4px;
+}
+
+/* Indicator colors */
+.room-stat-indicator.occupied {
+  background: #34d399;
+}
+
+.room-stat-indicator.reserved {
+  background: #facc15;
+}
+
+.room-stat-indicator.available {
+  background: #f59e0b;
+}
+
+.room-stat-indicator.not-ready {
+  background: #9ca3af;
+}
+
+/* Text */
+.room-stat-label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.room-stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+/* /////////////////////////////////////////////////////Revenue chart //////////////////////// */
+
+.revenue-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 15px 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width:700px;
+  /* margin-top: -45px;
+  margin-left: -90px; */
+}
+
+/* Header */
+.revenue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.revenue-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.revenue-filter {
+  background: #ecfccb;
+  color: #365314;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Chart */
+.revenue-chart {
+  width: 100%;
+  height: 220px;
+}
+
+/* Highlight */
+.revenue-highlight {
+  margin-top: 10px;
+  background: #ecfccb;
+  padding: 10px 14px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.revenue-highlight span {
+  display: block;
+  font-size: 12px;
+  color: #365314;
+}
+
+
+.revenue-highlight strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: #365314;
+}
+
+.dashboard-widgets-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* room availability | revenue */
+  gap: 24px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+
+/* //////////////////////////////////////Task card ///////////////// */
+
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .room-availability-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .admin-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
