@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  background-color: #f7f8fc;
+  color: #1f2937;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+.dashboard_layout {
+  display: flex;
+  /* height: 100vh; */
+  overflow: hidden; /* Keeps the outer frame fixed on desktop */
+  background-color: #f7f8fc;
+}
+
+/* ===============================
+   SIDEBAR
+================================ */
+.sidebar {
+  width: 256px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex-shrink: 0; /* Prevents sidebar from shrinking */
+}
+
+.sidebar .logo {
+  padding: 24px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2563eb;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sidebar nav {
+  flex: 1;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar nav div {
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar nav div:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.sidebar nav div.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.slide-div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.menu {
+  flex: 1.77;
+}
+
+/* Sidebar Footer */
+.side_footer {
+  flex: 0.23;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side_footer div {
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #4b5563;
+}
+
+.side_footer div:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.main-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* ENABLES SCROLLING */
+  height: 100vh;    /* Ensures it fills height */
+}
+
+
+.header-section {
+  /* position: fixed;
+  top: 0;
+  left: 256px;
+  right: 0; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0; /* Keeps header from shrinking when scrolling */
+}
+
+/* ===============================
+   LEFT SIDE (GREETING)
+================================ */
+
+.header-section > div:first-child {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ===============================
+   RIGHT SIDE (ACTIONS)
+================================ */
+
+.header-section > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-section p {
+  font-size: 15px;
+  font-weight: 400;
+}
+/* Individual action items */
+.header-section span {
+  font-size: 15px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header-section span:hover {
+  color: #2563eb;
+}
+
+/* base link style */
+.sidebar-link {
+  display: block;
+  padding: 12px 16px;
+  margin: 6px 0;
+  text-decoration: none;
+  color: #5b708e;
+  font-size: 15px;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* hover */
+.sidebar-link:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+/* active (selected) */
+.sidebar-link.active {
+  background-color: #eef5ff;
+  color: #2563eb;
+  font-weight: 500;
+}

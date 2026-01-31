@@ -1,13 +1,70 @@
-/* Container */
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= BOOKING PAGE ================= */
+/* This sits INSIDE dashboard-content */
+.booking-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: -12px; /* 🔑 pulls content slightly UP */
+}
+
+/* Header */
+.booking-header {
+  margin-bottom: 12px;
+}
+
+.booking-header h2 {
+  font-size: 20px;
+}
+
+.booking-header p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ================= SCROLL AREA ================= */
+/* Uses dashboard height, no 100vh here */
+.cards-scroll-area {
+  max-height: calc(100vh - 160px); /* 🔑 fills more screen */
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Scrollbar polish (optional) */
+.cards-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cards-scroll-area::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* ================= GRID ================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 28px;
+  width: 100%; /* 🔑 full width */
+}
+
+/* ================= CARD ================= */
 .booking-card {
-  width: 320px;
+  width: 100%;
+  max-width: 340px;
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   border: 1px solid #eaeaea;
-  font-family: 'Segoe UI', sans-serif;
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .booking-card:hover {
@@ -15,7 +72,7 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Header & Image */
+/* Card header */
 .card-header {
   position: relative;
   height: 160px;
@@ -32,62 +89,54 @@
   top: 12px;
   right: 12px;
   padding: 6px 12px;
-  background-color: #fff8e1; /* Light Yellow */
-  color: #f57c00;            /* Orange Text */
+  background: #fff8e1;
+  color: #f57c00;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-/* Body */
+/* Card body */
 .card-body {
   padding: 16px;
 }
 
 .hotel-name {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a1a1a;
+  font-size: 1.05rem;
   font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .booking-dates {
-  margin: 4px 0 16px 0;
-  color: #666;
   font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 14px;
 }
 
-/* Info Grid */
+/* Info */
 .booking-info-grid {
   display: flex;
   justify-content: space-between;
-  background-color: #f8f9fa;
+  background: #f8f9fa;
   padding: 12px;
   border-radius: 8px;
 }
 
-.info-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.info-item .label {
-  font-size: 0.7rem;
-  color: #888;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-
-.info-item .value {
+.label {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: #333;
+  color: #000000;
+  font-weight: 700;
+  padding-right: 10px;
 }
 
-/* Footer & Buttons */
+.value {
+  font-size: 0.9rem;
+  color: #fb0000;
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+/* Footer */
 .card-footer {
   padding: 12px 16px;
   border-top: 1px solid #f0f0f0;
@@ -98,22 +147,16 @@
 .btn {
   flex: 1;
   padding: 10px;
-  border: none;
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  border: none;
 }
 
 .btn-outline {
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #d1d5db;
-  color: #374151;
-}
-
-.btn-outline:hover {
-  background: #f3f4f6;
 }
 
 .btn-primary {
@@ -121,6 +164,15 @@
   color: white;
 }
 
-.btn-primary:hover {
-  background: #1d4ed8;
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1100px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
 }

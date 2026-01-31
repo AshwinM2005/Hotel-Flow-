@@ -23,7 +23,7 @@ body {
   grid-template-columns: 1.3fr 1fr;
   background: #b2d2b9;
   border-radius: 14px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-bottom: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }

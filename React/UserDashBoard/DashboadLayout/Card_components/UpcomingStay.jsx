@@ -14,7 +14,7 @@ function UpcomingStay() {
       </div>
 
       <div className="stay-image">
-        Hotel View
+        <img src="Images/user_interface/HCM_P_7556778_4by3.webp" alt="Hotel Image" />
       </div>
 
       <div className="stay-info">
