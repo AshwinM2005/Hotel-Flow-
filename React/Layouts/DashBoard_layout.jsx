@@ -9,7 +9,7 @@ import Sidebar_Layout from './Sidebar_Layout'
 function DashBoard_layout({role}) {
 
   return (
-    <div className='dashboard_layout'>
+    <div className='dashboard_layout flex-1 min-h-screen'>
         
             <aside className='sidebar'>
                 <Sidebar_Layout role={role}/>
@@ -19,7 +19,7 @@ function DashBoard_layout({role}) {
                 <header className='nav-header'>
                     <Header/>
                 </header>
-                <section className='content-section'>
+                <section className='content-section flex-1'>
                     <Outlet/>
                 </section>
             </main>

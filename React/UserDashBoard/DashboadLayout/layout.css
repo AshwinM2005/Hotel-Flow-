@@ -1,11 +1,11 @@
 /* ===============================
    GLOBAL RESET & BASE
 ================================ */
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 body {
   font-family: "Poppins", system-ui, sans-serif;

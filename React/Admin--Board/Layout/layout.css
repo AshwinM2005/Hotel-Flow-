@@ -142,6 +142,7 @@
 
 /* ///////////////////////////////////room Availability ////////////////////////////////////////////// */
 
+
 /* ===============================
    ROOM AVAILABILITY CARD
    =============================== */
@@ -331,10 +332,14 @@
 
 .dashboard-widgets-grid {
   display: grid;
-  grid-template-columns: 2fr 3fr; /* room availability | revenue */
+  grid-template-columns: 1fr 2fr; /* room availability | revenue */
   gap: 24px;
   align-items: start;
   margin-top: 24px;
+}
+
+.left{
+  
 }
 
 

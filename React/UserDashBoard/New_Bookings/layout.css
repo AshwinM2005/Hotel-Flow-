@@ -1,9 +1,9 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", sans-serif;
-}
+} */ */
 
 body {
   background: #f5f7fb;
@@ -104,8 +104,8 @@ label {
   color: #374151;
 }
 
-input,
-select {
+.card input,
+.card select {
   width: 100%;
   padding: 12px;
   border-radius: 10px;
@@ -114,8 +114,8 @@ select {
   outline: none;
 }
 
-input:focus,
-select:focus {
+.card input:focus,
+.card select:focus {
   border-color: #2563eb;
 }
 

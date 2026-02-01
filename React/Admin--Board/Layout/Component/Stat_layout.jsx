@@ -60,8 +60,7 @@ function Stat_layout() {
         />
       </div>
 
-      {/* BELOW GRID – FULL WIDTH */}
-      <div className="dashboard-widgets-grid">
+      {/* <div className="dashboard-widgets-grid">
         <RoomAvailability_Card
           occupied={286}
           reserved={87}
@@ -71,11 +70,34 @@ function Stat_layout() {
 
         <Revenue_Chart />
         
-      </div>
-
-      {/* <div className="dashboard-widgets-grid">
-        <Revenue_Chart />
       </div> */}
+
+      <div className='dashboard-widgets-grid'>
+        <div className='left'>
+            <div className='left-top'>
+              <RoomAvailability_Card
+                occupied={286}
+                reserved={87}
+                available={32}
+                notReady={13}
+              />
+            </div>
+            <div className='left-bottom'></div>
+                <Stat_Data_Card
+                  title="New Bookings"
+                  value="840"
+                  icon={<Calendar size={18} />}
+                  trend={8.7}
+                  trendText="from last week"
+                  variant="success"
+                />
+        </div>
+
+        <div className='right'>
+          <Revenue_Chart />
+        </div>
+
+      </div>
 
 
     </div>
