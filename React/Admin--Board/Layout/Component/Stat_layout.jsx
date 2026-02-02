@@ -6,6 +6,7 @@ import Rating_Card from './Rating_Card';
 import RoomAvailability_Card from './RoomAvailability_Card';
 import Revenue_Chart from './Revenue_Chart';
 import Task_Card from './Task_Card';
+import Booking_Platform from './Booking_Platform';
 
 
 
@@ -83,14 +84,7 @@ function Stat_layout() {
               />
             </div>
             <div className='left-bottom'></div>
-                <Stat_Data_Card
-                  title="New Bookings"
-                  value="840"
-                  icon={<Calendar size={18} />}
-                  trend={8.7}
-                  trendText="from last week"
-                  variant="success"
-                />
+                <Booking_Platform/>
         </div>
 
         <div className='right'>

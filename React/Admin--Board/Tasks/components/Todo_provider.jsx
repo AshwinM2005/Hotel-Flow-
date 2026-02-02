@@ -52,7 +52,7 @@ function Todo_provider() {
           <TodoForm />
         </div>
 
-        <div className="flex flex-wrap gap-y-3">
+        <div className="flex flex-wrap gap-y-3 overflow-y-auto h-100 no-scrollbar">
           {todos.map((todo) => (
             <div key={todo.id} className="w-full">
               <Todoitem todo={todo} />
