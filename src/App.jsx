@@ -9,6 +9,7 @@ import DashBoard_layout from '../React/Layouts/DashBoard_layout'
 import My_Booking_Layout from '../React/UserDashBoard/My_Bookings/Layout';
 import Admin_Layout from '../React/Admin--Board/Layout/Admin_Layout';
 import Todo_provider from '../React/Admin--Board/Tasks/components/Todo_provider';
+
 function App() {
   const [count, setCount] = useState(0)
   const role = "admin" 
@@ -21,13 +22,10 @@ function App() {
       <>
         <Route index element={<Admin_Layout/>}/>
         <Route path="task" element={<Todo_provider/>} />
+        <Route path="staff" element={<Todo_provider/>} />
         
       </>
       );
-
-      // task = (<>
-      // <Route path="task" element={<Todo_provider/>} />
-      // </>)
       
     }else {
       routes =(
@@ -47,16 +45,8 @@ function App() {
           {routes}
           
         </Route>
-        {/* <Route path="task" element={<Todo_provider/>} /> */}
-
-        
-
       </Routes>
-
-    
     </BrowserRouter>
-
-    // <Todo_provider/>
    
   )
 }
