@@ -24,6 +24,12 @@ body {
   min-height: 100%;
 }
 
+.main-content{
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
 .left-content {
   flex: 2;
   display: flex;

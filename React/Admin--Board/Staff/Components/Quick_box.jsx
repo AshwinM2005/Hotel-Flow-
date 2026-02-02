@@ -2,7 +2,7 @@ import React from 'react'
 
 function Quick_box() {
   return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 m-3  rounded-2xl">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 m-2 rounded-2xl">
       
       {/* Total Staff */}
       <div className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm h-17">

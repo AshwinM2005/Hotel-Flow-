@@ -28,25 +28,15 @@ function Todoitem({todo}) {
                 checked={todo.isCompleated}
                 onChange={toggleComplete}
             />
-            {isTodoEditable ? (
-            <textarea
-                className={`border outline-none w-full bg-transparent rounded-lg px-2 resize-none min-w-0 ${
-                todo.isCompleated ? "line-through" : ""
-                }`}
+            <input
+                type="text"
+                className={`border outline-none w-full bg-transparent rounded-lg ${
+                    isTodoEditable ? "border-black/10 px-2" : "border-transparent"
+                } ${todo.isCompleated ? "line-through" : ""}`}
                 value={todoMsg}
                 onChange={(e) => setTodoMsg(e.target.value)}
-                rows={2}
+                readOnly={!isTodoEditable}
             />
-            ) : (
-            <p
-                className={`flex-1 min-w-0 wrap-break-word whitespace-normal ${
-                todo.isCompleated ? "line-through" : ""
-                }`}
-            >
-                {todoMsg}
-            </p>
-            )}
-
             {/* Edit, Save Button */}
             <button
                 className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"

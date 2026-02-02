@@ -10,7 +10,7 @@ import RoomService from './Card_components/RoomService'
 
 function UserDashBoard_Content() {
   return (
-    <>
+    <div className='main-content'>
         <div className='left-content'>
             <UpcomingStay/>
             <p className='quick-action' >
@@ -27,7 +27,7 @@ function UserDashBoard_Content() {
             <Doc_Status/> <br />
             <Rewards/>
         </div>
-    </>
+    </div>
   )
 }
 

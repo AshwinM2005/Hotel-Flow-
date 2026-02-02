@@ -15,7 +15,7 @@ body {
 ================================ */
 .dashboard_layout {
   display: flex;
-  /* height: 100vh; */
+  height: 100vh;
   overflow: hidden; /* Keeps the outer frame fixed on desktop */
   background-color: #f7f8fc;
 }
@@ -29,7 +29,7 @@ body {
   border-right: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   flex-shrink: 0; /* Prevents sidebar from shrinking */
 }
 
@@ -104,8 +104,9 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* ENABLES SCROLLING */
-  height: 100vh;    /* Ensures it fills height */
 }
+
+
 
 
 
@@ -187,6 +188,8 @@ body {
 
 .content-section{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;   /* IMPORTANT */
+  justify-content: flex-start;
   flex: 1;
 }
