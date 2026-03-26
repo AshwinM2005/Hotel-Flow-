@@ -14,10 +14,10 @@ import Rooms from '../React/Admin--Board/Room/Rooms';
 
 function App() {
   const [count, setCount] = useState(0)
-  const role = "admin" 
-  // const role = "user" 
+  // const role = "admin" 
+  const role = "user" 
    let routes ;
-   let task 
+   let task
 
    if (role==="admin") {
       routes=(

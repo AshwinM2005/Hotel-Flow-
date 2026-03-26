@@ -1,7 +1,9 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Side_content from '../UserDashBoard/DashboadLayout/Side_content'
 import Admin_Sidebar_Content from '../Admin--Board/Layout/Sidebar_Layout';
+import { User, LogOut} from "lucide-react";
 
 function Sidebar_Layout({role}) {
   let sidebar ;
@@ -22,8 +24,10 @@ function Sidebar_Layout({role}) {
         </nav>
 
       <div className="side_footer">
-        <div>Profile</div>
-        <div >Logout</div>
+        <NavLink to="profile"><div ><User className="icon" style={{color:"red"}}/>
+          <span>Profile</span></div></NavLink>
+        <NavLink ><div ><LogOut className="icon" style={{color:"red"}}/>
+          <span>Logout</span></div></NavLink>
       </div>
       </div>
 

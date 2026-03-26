@@ -1,5 +1,7 @@
 import React from 'react'
 import "./layout.css"
+import { NavLink } from 'react-router-dom'
+import { User,Settings, Bell} from "lucide-react";
 
 function Header() {
   return (
@@ -9,10 +11,10 @@ function Header() {
             <p>Welcome To Your Dashboard</p>
         </div>
         
-        <div>
-            <span>Notification</span>
-            <span>setting</span>
-            <span>profile</span>
+        <div style={{gap:"35px"}}>
+            <NavLink to="notification"><Bell className='icon'/></NavLink>
+            <NavLink to="settings"><Settings className='icon'/></NavLink>
+            <NavLink to="profile"><User className='icon'/></NavLink>
         </div>
     </div>
   )
