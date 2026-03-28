@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const mysql = require("mysql2");
+require('dotenv').config({path:"../.env"});
 
 const cors = require('cors');
 
@@ -14,10 +15,10 @@ app.use(bodyParser.json());
 
 // MySQL Connection
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "Maurya",
-  password: "4236",
-  database: "hotel_management_system"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 connection.connect(err => {
@@ -61,7 +62,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("🚀 Server running on http://localhost:3000"));
+app.listen(process.env.PORT, () => console.log("🚀 Server running on http://localhost:3000"));
 
 // ##################################################################################
 

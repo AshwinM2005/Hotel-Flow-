@@ -27,12 +27,12 @@ function Side_content() {
         <span>My Bookings</span>
       </NavLink>
 
-      <NavLink to="document" className="sidebar-link">
+      <NavLink to="user_document" className="sidebar-link">
         <FileText className="icon" />
         <span>My Documents</span>
       </NavLink>
 
-      <NavLink to="service" className="sidebar-link">
+      <NavLink to="hotel_service" className="sidebar-link">
         <ConciergeBell className="icon" />
         <span>Hotel Services</span>
       </NavLink>

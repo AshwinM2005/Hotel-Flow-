@@ -11,6 +11,9 @@ import Admin_Layout from '../React/Admin--Board/Layout/Admin_Layout';
 import Todo_provider from '../React/Admin--Board/Tasks/components/Todo_provider';
 import Staff_Layout from '../React/Admin--Board/Staff/Layout/Layout';
 import Rooms from '../React/Admin--Board/Room/Rooms';
+import Profile_Layout from '../React/UserDashBoard/Profile/Layout';
+import Hotel_Service_Layout from '../React/UserDashBoard/Services/Layout';
+import Document_Layout from '../React/UserDashBoard/Documents/Layout';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,12 +33,15 @@ function App() {
       </>
       );
       
-    }else {
+    }else if (role==="user"){
       routes =(
     <>
       <Route index element={<UserDashBoard_Content/>} />
+      <Route path="profile" element={<Profile_Layout/>} />
       <Route path="new-booking" element={<BookingLayout/>} />
       <Route path="my_bookings" element={<My_Booking_Layout/>} />
+      <Route path="user_document" element={<Document_Layout/>} />
+      <Route path="hotel_service" element={<Hotel_Service_Layout/>} />
         
     </>
     )}

@@ -1,8 +1,9 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function RoomService() {
   return (
-    <div className='RoomService-display'>RoomService</div>
+    <NavLink to="roomservice"><div className='RoomService-display'>RoomService</div></NavLink>
   )
 }
 

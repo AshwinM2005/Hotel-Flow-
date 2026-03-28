@@ -173,8 +173,14 @@ body {
   text-align: center;
   font-size: large;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* Added pointer for better UX */
+  cursor: pointer; 
+  
+  
 }
+
+/* .restaurent-display {
+  
+} */
 
 .restaurent-display:hover {
   transform: translateY(-8px) scale(1.02);

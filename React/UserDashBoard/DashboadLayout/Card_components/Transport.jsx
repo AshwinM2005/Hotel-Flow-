@@ -1,8 +1,9 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Transport() {
   return (
-    <div className='Transport-display' >Transport</div>
+    <NavLink to="transport"><div className='Transport-display' >Transport</div></NavLink>
   )
 }
 
