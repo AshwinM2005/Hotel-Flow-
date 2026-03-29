@@ -16,90 +16,81 @@ import Hotel_Service_Layout from '../React/UserDashBoard/Services/Layout';
 import Document_Layout from '../React/UserDashBoard/Documents/Layout';
 
 function App() {
-  const [count, setCount] = useState(0)
-  // const role = "admin" 
-  // const role = "user" 
+  const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const [role , setRole] = useState(null);
-  useEffect (()=>{
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const urlToken = params.get("token");
-    if (urlToken) {
-    localStorage.setItem("token", urlToken);
 
-    // clean URL (remove token from address bar)
-    window.history.replaceState({}, document.title, "/");
-  }
-  const token = localStorage.getItem("token");
-    if(!token){
-      window.location.href = "http://127.0.0.1:5500/Home_Page/login_page/login.html";
-      return ; 
+    if (urlToken) {
+      localStorage.setItem("token", urlToken);
+      window.history.replaceState({}, document.title, "/");
     }
-    fetch("http://localhost:3000/dashboard" , {
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "http://127.0.0.1:5500/Home_Page/login_page/login.html";
+      return;
+    }
+
+    fetch("http://localhost:3000/dashboard", {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(res => {
-  console.log("STATUS:", res.status); // 👈 ADD THIS
+      .then(res => {
+        if (!res.ok) throw new Error("API failed");
+        return res.json();
+      })
+      .then(data => {
+        setRole(data.Type);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
 
-  if (!res.ok) {
-    throw new Error("API failed");
+  if (loading) {
+    return <div>Loading...</div>;
   }
-  return res.json();
-})
-.then(data => {
-  console.log("DATA:", data); // 👈 ADD THIS
-  setRole(data.Type.toLowerCase());
-})
-.catch(err => {
-  console.error("ERROR:", err);
-});
-  },[])
-   
 
-   let routes ;
-   let task
+  let routes;
 
-   if (role==="admin") {
-      routes=(
+  if (role === "Admin") {
+    routes = (
       <>
-        <Route index element={<Admin_Layout/>}/>
-        <Route path="task" element={<Todo_provider/>} />
-        <Route path="staff" element={<Staff_Layout/>} />
-        <Route path="rooms" element={<Rooms/>} />
-        
+        <Route index element={<Admin_Layout />} />
+        <Route path="task" element={<Todo_provider />} />
+        <Route path="staff" element={<Staff_Layout />} />
+        <Route path="rooms" element={<Rooms />} />
       </>
-      );
-      
-    }else if (role==="user"){
-      routes =(
-    <>
-      <Route index element={<UserDashBoard_Content/>} />
-      <Route path="profile" element={<Profile_Layout/>} />
-      <Route path="new-booking" element={<BookingLayout/>} />
-      <Route path="my_bookings" element={<My_Booking_Layout/>} />
-      <Route path="user_document" element={<Document_Layout/>} />
-      <Route path="hotel_service" element={<Hotel_Service_Layout/>} />
-        
-    </>
-    )}
+    );
+  } else if (role === "User") {
+    routes = (
+      <>
+        <Route index element={<UserDashBoard_Content />} />
+        <Route path="profile" element={<Profile_Layout />} />
+        <Route path="new-booking" element={<BookingLayout />} />
+        <Route path="my_bookings" element={<My_Booking_Layout />} />
+        <Route path="user_document" element={<Document_Layout />} />
+        <Route path="hotel_service" element={<Hotel_Service_Layout />} />
+      </>
+    );
+  }
 
   return (
-
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<DashBoard_layout role={role}/>}>
+        <Route path="/" element={<DashBoard_layout role={role} />}>
           {routes}
-          
         </Route>
       </Routes>
     </BrowserRouter>
-
-    
-
-   
-  )
+  );
 }
 
 export default App
