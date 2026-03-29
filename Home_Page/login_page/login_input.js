@@ -113,7 +113,7 @@ log_submit.addEventListener("click", async (e) => {
       return;
     }
 
-    // ✅ success → DO NOT show token
+    localStorage.removeItem("token");
     localStorage.setItem("token", data.token);
 
     // redirect to dashboard
