@@ -12,6 +12,12 @@ function Sidebar_Layout({role}) {
     }else {
         sidebar = (<Side_content/>)
     }
+
+    const logout = ()=>{
+      window.location.href = "http://127.0.0.1:5500/Home_Page/";
+      localStorage.removeItem("token");
+      return ;
+    }
   return (
     <aside className="sidebar">
       
@@ -26,8 +32,8 @@ function Sidebar_Layout({role}) {
       <div className="side_footer">
         <NavLink to="profile"><div ><User className="icon" style={{color:"red"}}/>
           <span>Profile</span></div></NavLink>
-        <NavLink ><div ><LogOut className="icon" style={{color:"red"}}/>
-          <span>Logout</span></div></NavLink>
+        <button onClick={logout} ><div ><LogOut className="icon" style={{color:"red"}}/>
+          <span>Logout</span></div></button>
       </div>
       </div>
 
