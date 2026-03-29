@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import "./index.css"
 import { BrowserRouter } from 'react-router-dom';
 import './App.css'
@@ -18,7 +18,46 @@ import Document_Layout from '../React/UserDashBoard/Documents/Layout';
 function App() {
   const [count, setCount] = useState(0)
   // const role = "admin" 
-  const role = "user" 
+  // const role = "user" 
+
+  const [role , setRole] = useState(null);
+  useEffect (()=>{
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get("token");
+    if (urlToken) {
+    localStorage.setItem("token", urlToken);
+
+    // clean URL (remove token from address bar)
+    window.history.replaceState({}, document.title, "/");
+  }
+  const token = localStorage.getItem("token");
+    if(!token){
+      window.location.href = "http://127.0.0.1:5500/Home_Page/login_page/login.html";
+      return ; 
+    }
+    fetch("http://localhost:3000/dashboard" , {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(res => {
+  console.log("STATUS:", res.status); // 👈 ADD THIS
+
+  if (!res.ok) {
+    throw new Error("API failed");
+  }
+  return res.json();
+})
+.then(data => {
+  console.log("DATA:", data); // 👈 ADD THIS
+  setRole(data.Type.toLowerCase());
+})
+.catch(err => {
+  console.error("ERROR:", err);
+});
+  },[])
+   
+
    let routes ;
    let task
 
