@@ -1,13 +1,12 @@
 // mauryashwin2005@gmail.com  4236
 
+import express from "express";
+import bodyParser from "body-parser";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import cors from "cors";
+import db_connection from "./config/db_connection.js";
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
-const mysql = require("mysql2");
-require('dotenv').config({path:"../.env"});
-const jwt = require("jsonwebtoken");
-const cors = require('cors');
 
 const app = express();  
 app.use(cors());       
@@ -28,19 +27,6 @@ const verifyToken = (req, res, next)=>{
   }
 };
 
-// MySQL Connection
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
-
-connection.connect(err => {
-  if (err) throw err;
-  console.log("✅ Connected to MySQL");
-});
-
 // API route to register user
 app.post("/register", async (req, res) => {
   try {
@@ -52,25 +38,19 @@ app.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const query = "INSERT INTO login_user_data (User_Name, Email, Password, Type) VALUES (?, ?, ? ,? )";
-    connection.query(query, [username, email, hashedPassword, "User"], (err, result) => {
+    db_connection.query(query, [username, email, hashedPassword, "User"], (err, result) => {
 
       if (err) {
     console.error(err);
-
-    // Check for common MySQL errors
     if (err.code === "ER_DUP_ENTRY") {
-    // Duplicate email or username
     return res.status(400).json("❌ This email or username is already registered!");
     }
-    // Generic server error
+    
     return res.status(500).json("⚠️ Unable to save user. Please try again later.");
   }
 
-  // Success
   res.json("✅ User registered successfully!");
 });    
-
-    
   } catch (error) {
     console.error("Server error:", error);
     res.status(500).json("Server error: " + error.message);
@@ -89,7 +69,7 @@ app.post("/login", (req, res) => {
 
   // Fetch user by email
   const query = "SELECT * FROM login_user_data WHERE Email = ?";
-  connection.query(query, [email], async (err, results) => {
+  db_connection.query(query, [email], async (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json("⚠️ Server error while fetching user.");
@@ -130,7 +110,7 @@ app.get("/dashboard", verifyToken, (req, res) => {
 
   const query = "SELECT Id, User_Name, Email, Type FROM login_user_data WHERE Id = ?";
 
-  connection.query(query, [userId], (err, results) => {
+  db_connection.query(query, [userId], (err, results) => {
     if (err) {
       return res.status(500).json({ message: "Server error" });
     }

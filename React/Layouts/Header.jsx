@@ -7,12 +7,13 @@ import { AuthContext } from "../config/Authcontext"
 
 function Header() {
   const {user}= useContext(AuthContext);
+  const {role}= useContext(AuthContext);
   
   return (
     <div className='header-section'>
       <div>
         Hello, { user?.User_Name || "Guest"}
-        <p>Welcome To Your Dashboard</p>
+        <p>Welcome To Your {role} Dashboard</p>
       </div>
 
       <div style={{ gap: "35px" }}>

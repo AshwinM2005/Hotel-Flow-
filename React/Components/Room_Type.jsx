@@ -10,6 +10,7 @@ function Room_Type_Card({
   price,
   status = "Available",
 }) {
+     
   return (
     <div className="flex gap-4 rounded-xl bg-white p-4 shadow-sm hover:bg-gray-50 cursor-pointer my-2">
       

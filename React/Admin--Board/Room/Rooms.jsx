@@ -4,6 +4,14 @@ import Room_Type_Card from '../../Components/Room_Type'
 import Room_Details from './Component/Room_Details'
 
 function Rooms() {
+  const getRoomTypes = (req, res) => {
+  db.query("SELECT * FROM room_types", (err, results) => {
+    if (err) return res.status(500).json(err);
+
+    res.json(results);
+  });
+};
+
   return (
     <div className='flex-1 bg-[#f0e2fe] rounded-2xl p-3'>
         <Searchbar/>
