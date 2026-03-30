@@ -14,10 +14,15 @@ import Rooms from '../React/Admin--Board/Room/Rooms';
 import Profile_Layout from '../React/UserDashBoard/Profile/Layout';
 import Hotel_Service_Layout from '../React/UserDashBoard/Services/Layout';
 import Document_Layout from '../React/UserDashBoard/Documents/Layout';
+import { useContext } from "react";
+import { AuthContext } from "../React/config/Authcontext.jsx";
+
+
+
 
 function App() {
-  const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { setRole ,role , setUser} = useContext(AuthContext);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -31,6 +36,7 @@ function App() {
     const token = localStorage.getItem("token");
 
     if (!token) {
+      setLoading(false);
       window.location.href = "http://127.0.0.1:5500/Home_Page/login_page/login.html";
       return;
     }
@@ -45,6 +51,7 @@ function App() {
         return res.json();
       })
       .then(data => {
+        setUser(data)
         setRole(data.Type);
         setLoading(false);
       })
