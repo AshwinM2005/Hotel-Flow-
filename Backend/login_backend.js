@@ -76,7 +76,7 @@ app.post("/login", (req, res) => {
     }
 
     if (results.length === 0) {
-      return res.status(404).json("⚠️ Server error while fetching user.");
+      return res.status(404).json("⚠️  error while fetching user.");
     }
 
     const user = results[0];
@@ -118,3 +118,87 @@ app.get("/dashboard", verifyToken, (req, res) => {
     res.json(results[0]);
   });
 }); 
+
+// ################### GET ALL ROOMS #############################
+
+//  room types ################
+app.get("/room_types", verifyToken, (req, res) => {
+  const query = `SELECT * FROM room_types`;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching rooms" });
+    }
+
+    res.json(results);
+  });
+});
+
+// rooms ###################
+
+app.get("/rooms", verifyToken, (req, res) => {
+  const query = `SELECT * FROM rooms`;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching rooms" });
+    }
+
+    res.json(results);
+  });
+});
+
+// rooms available ###############
+
+app.get("/rooms/available", verifyToken, (req, res) => {
+  const query = `SELECT 
+    room_types.type,
+    COUNT(*) AS available_count
+    FROM rooms
+    JOIN room_types ON rooms.room_type_id = room_types.id
+    WHERE rooms.status = 'available'
+    GROUP BY room_types.type`;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching rooms" });
+    }
+
+    const formatted = {};
+    results.forEach(r => {
+      formatted[r.type] = r.available_count;
+    });
+
+    res.json(formatted);
+  });
+});
+
+// ############################### Booking ###################
+
+
+app.get("/booking", verifyToken, (req, res) => {
+  const query = `SELECT 
+    room_types.type,
+    COUNT(*) AS available_count
+    FROM rooms
+    JOIN room_types ON rooms.room_type_id = room_types.id
+    WHERE rooms.status = 'available'
+    GROUP BY room_types.type`;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching rooms" });
+    }
+
+    const formatted = {};
+    results.forEach(r => {
+      formatted[r.type] = r.available_count;
+    });
+
+    res.json(formatted);
+  });
+});

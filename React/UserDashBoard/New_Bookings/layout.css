@@ -90,6 +90,12 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+.selected {
+  border: 2px solid #7f72e7;
+  background-color: #f3f0ff;
+  border-radius: 10px;
+}
+
 /* Form */
 .form-grid {
   display: grid;

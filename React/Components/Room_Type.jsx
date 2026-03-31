@@ -1,6 +1,6 @@
 function Room_Type_Card({
   image,
-  name,
+  type,
   size,
   bed,
   guests,
@@ -18,7 +18,7 @@ function Room_Type_Card({
       <div className="h-24 w-32 shrink-0 overflow-hidden rounded-lg bg-gray-200">
         <img
           src={image}
-          alt={name}
+          alt={type}
           className="h-full w-full object-cover"
         />
       </div>
@@ -29,7 +29,7 @@ function Room_Type_Card({
         {/* Title + Status */}
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-gray-800">
-            {name}
+            {type}
           </h3>
           <span
             className={`rounded-full px-3 py-1 text-xs font-medium ${
@@ -44,13 +44,13 @@ function Room_Type_Card({
 
         {/* Meta info */}
         <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
-          <span>{size}</span>
+          <span>{size} m²</span>
           <span>{bed}</span>
           <span>{guests} guests</span>
         </div>
 
         {/* Description */}
-        <p className="text-xs text-gray-500 line-clamp-2">
+        <p className="text-xs text-gray-700 line-clamp-2">
           {description}
         </p>
 
@@ -61,7 +61,7 @@ function Room_Type_Card({
             <span className="text-xm text-black">{availabile_room}/{total_room} "Rooms"</span>
           </span>
           <span className="text-sm font-semibold text-gray-800">
-            ${price}
+            ₹ {price}-
             <span className="text-xs font-normal text-gray-500"> / night</span>
           </span>
         </div>
