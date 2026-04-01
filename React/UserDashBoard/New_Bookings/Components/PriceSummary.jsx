@@ -11,35 +11,51 @@ const PriceSummary = ( {stayDetails , stayRoomList}) => {
     (new Date(stayDetails.check_out) - new Date(stayDetails.check_in)) /
       (1000 * 60 * 60 * 24)
     );
-
+  const oneDayPrice = stayRoomList.price / 2;
   const charges = nights * stayRoomList.price;
-  const tax = charges * 0.18;
-  const total = charges + tax;
+  const price = nights === 0 ? oneDayPrice : charges;
+  const tax = price * 0.18;
+  const total = price + tax;
 
-    const booking =()=>{
-      const token = localStorage.getItem("token");
-      fetch("http://localhost:3000/bookings" , {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          check_in: stayDetails.check_in,
-          check_out: stayDetails.check_out,
-          room_id: stayRoomList.id
-        })
+  const booking = async () => {
+  const token = localStorage.getItem("token");
+
+  // 🔴 validation
+  if (!stayRoomList) {
+    alert("Please select a room");
+    return;
+  }
+
+  if (!stayDetails?.check_in || !stayDetails?.check_out) {
+    alert("Please select dates");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        check_in: stayDetails.check_in,
+        check_out: stayDetails.check_out,
+        room_type_id: stayRoomList.id,
+        payment_amount: total
       })
-      .then(res => {
-        if (!res.ok) throw new Error("Booking failed");
-        return res.json();
-      })
-      .then(data => {
-        alert("Booking successful! Your booking ID is " + data.id);
-      })
-      .catch(err => {
-        alert("Error: " + err.message);
-      });}
+    });
+
+    if (!res.ok) throw new Error("Booking failed");
+
+    const data = await res.json();
+
+    alert(data.message || "Booking successful!");
+
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
+};
 
   return (
     <div className="card price-summary" >
@@ -51,7 +67,7 @@ const PriceSummary = ( {stayDetails , stayRoomList}) => {
       </div>
       <div className="price-row">
         <span>Room Charges</span>
-        <span>₹{charges}</span>
+        <span>₹{price}</span>
       </div>
 
       <div className="price-row">
@@ -66,7 +82,9 @@ const PriceSummary = ( {stayDetails , stayRoomList}) => {
         <span>₹{total}</span>
       </div>
 
-      <button className="confirm-btn">Confirm Booking</button>
+      <button className="confirm-btn" onClick={booking}>
+        Confirm Booking
+      </button>
     </div>
   );
 };

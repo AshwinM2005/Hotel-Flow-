@@ -58,7 +58,7 @@ function Room_Type_Card({
         <div className="mt-auto flex items-center justify-between">
           <span className="text-gray-500">
             <span className="text-[13px]">Availability : </span>
-            <span className="text-xm text-black">{availabile_room}/{total_room} "Rooms"</span>
+            <span className="text-xm text-black">{availabile_room}/{total_room} -Rooms</span>
           </span>
           <span className="text-sm font-semibold text-gray-800">
             ₹ {price}-

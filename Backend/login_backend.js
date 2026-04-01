@@ -179,26 +179,128 @@ app.get("/rooms/available", verifyToken, (req, res) => {
 // ############################### Booking ###################
 
 
-app.get("/booking", verifyToken, (req, res) => {
-  const query = `SELECT 
-    room_types.type,
-    COUNT(*) AS available_count
-    FROM rooms
-    JOIN room_types ON rooms.room_type_id = room_types.id
-    WHERE rooms.status = 'available'
-    GROUP BY room_types.type`;
+app.post("/booking", verifyToken, (req, res) => {
+  const { room_type_id, check_in, check_out, payment_amount } = req.body;
+  const user_id = req.user.id;
 
-  db_connection.query(query, (err, results) => {
+  // 🔴 Validation
+  if (!room_type_id || !check_in || !check_out) {
+    return res.status(400).json({ message: "Missing data" });
+  }
+
+  db_connection.beginTransaction((err) => {
     if (err) {
-      console.error(err);
-      return res.status(500).json({ message: "Error fetching rooms" });
+      return res.status(500).json({ message: "Transaction error" });
     }
 
-    const formatted = {};
-    results.forEach(r => {
-      formatted[r.type] = r.available_count;
-    });
+    // 🔒 Step 1: Get ONE available room of that type
+    const lockQuery = `
+      SELECT * FROM rooms
+      WHERE room_type_id = ? AND status = 'available'
+      LIMIT 1
+      FOR UPDATE
+    `;
 
-    res.json(formatted);
+    db_connection.query(lockQuery, [room_type_id], (err, roomResult) => {
+      if (err) {
+        return db_connection.rollback(() => {
+          res.status(500).json({ message: "Lock error" });
+        });
+      }
+
+      if (roomResult.length === 0) {
+        return db_connection.rollback(() => {
+          res.status(400).json({ message: "No rooms available for this type" });
+        });
+      }
+
+      const actualRoomId = roomResult[0].id;
+
+      console.log("Allocated Room:", actualRoomId);
+
+      // 🔍 Step 2: Check overlapping bookings
+      const checkBookingQuery = `
+        SELECT * FROM bookings
+        WHERE room_id = ?
+        AND check_out > ?
+        AND check_in < ?
+      `;
+
+      db_connection.query(
+        checkBookingQuery,
+        [actualRoomId, check_in, check_out],
+        (err, bookingResult) => {
+          if (err) {
+            return db_connection.rollback(() => {
+              res.status(500).json({ message: "Check failed" });
+            });
+          }
+
+          if (bookingResult.length > 0) {
+            return db_connection.rollback(() => {
+              res.status(400).json({
+                message: "Room already booked for these dates"
+              });
+            });
+          }
+
+          // ✅ Step 3: Insert booking
+          const insertQuery = `
+            INSERT INTO bookings 
+            (user_id, room_id, check_in, check_out, payment_amount)
+            VALUES (?, ?, ?, ?, ?)
+          `;
+
+          db_connection.query(
+            insertQuery,
+            [user_id, actualRoomId, check_in, check_out, payment_amount],
+            (err, result) => {
+              if (err) {
+                return db_connection.rollback(() => {
+                  res.status(500).json({ message: "Booking failed" });
+                });
+              }
+
+              // 🔥 Step 4: Update ONLY that room
+              const updateRoomQuery = `
+                UPDATE rooms 
+                SET status = 'occupied'
+                WHERE id = ?
+                LIMIT 1
+              `;
+
+              db_connection.query(updateRoomQuery, [actualRoomId], (err, updateResult) => {
+                if (err) {
+                  return db_connection.rollback(() => {
+                    res.status(500).json({ message: "Update failed" });
+                  });
+                }
+
+                if (updateResult.affectedRows === 0) {
+                  return db_connection.rollback(() => {
+                    res.status(400).json({ message: "Room update failed" });
+                  });
+                }
+
+                // ✅ Step 5: Commit
+                db_connection.commit((err) => {
+                  if (err) {
+                    return db_connection.rollback(() => {
+                      res.status(500).json({ message: "Commit failed" });
+                    });
+                  }
+
+                  res.json({
+                    message: "Booking successful",
+                    room_allocated: actualRoomId,
+                    booking_id: result.insertId
+                  });
+                });
+              });
+            }
+          );
+        }
+      );
+    });
   });
 });

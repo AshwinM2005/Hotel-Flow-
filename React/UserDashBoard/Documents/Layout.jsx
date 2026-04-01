@@ -2,7 +2,8 @@ import React from 'react'
 
 function Document_Layout() {
   return (
-    <div>Document_Layout</div>
+    <div className='document-layout-container'>No documents uploaded</div>
+  
   )
 }
 
