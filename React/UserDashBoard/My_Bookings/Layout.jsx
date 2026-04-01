@@ -1,15 +1,40 @@
 import React from "react";
 import "./layout.css";
 import Cards from "./component/Cards";
+import { useState , useEffect } from "react";
 
-function My_Booking_Layout() {
-  const any_bookings = true;
+const My_Booking_Layout = () => {
+  const [bookings, setBookings] = useState([]);
+  const fetchBookings = async () => {
+    const token = localStorage.getItem("token");
 
-  if (!any_bookings) {
-    return <div>No recent bookings</div>;
-  }
+    try {
+      const res = await fetch("http://localhost:3000/booking/my_bookings", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const data = await res.json();
+      console.log(data);
+      if (!Array.isArray(data)) {
+        console.error(data);
+        setBookings([]);
+      } else {
+        setBookings(data);
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    fetchBookings();
+  }, []);
+
 
   return (
+    
     <div className="booking-page">
       {/* Static header / content */}
       <div className="booking-header">
@@ -17,15 +42,20 @@ function My_Booking_Layout() {
         <p>Manage your upcoming and past stays</p>
       </div>
 
-      {/* ONLY THIS SCROLLS */}
       <div className="cards-scroll-area">
         <div className="cards-grid">
-          <Cards/>
-          <Cards/>
+
+          {bookings.length === 0 ? (
+            <p className="no-booking">No bookings found !! <br />Please book a stay to see it here.</p>
+          ) : (
+            bookings.map((booking) => (
+              <Cards key={booking.booking_id} booking={booking} />
+            ))
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default My_Booking_Layout;

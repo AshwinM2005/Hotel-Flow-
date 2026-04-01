@@ -1,13 +1,20 @@
 import React from "react";
 import "../layout.css";
 
-function Cards() {
+function Cards( {booking}) {
+  const formatDate = (date) => {
+  return new Date(date).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  });
+};
   return (
     <div className="booking-card">
       {/* Header */}
       <div className="card-header">
         <img
-          src="Images/user_interface/slidingimg6.jpg"
+          src={booking.image}
           alt="Hotel"
           className="hotel-image"
         />
@@ -16,18 +23,14 @@ function Cards() {
 
       {/* Body */}
       <div className="card-body">
-        <h3 className="hotel-name">Grand Plaza Hotel</h3>
-        <p className="booking-dates">Oct 25, 2025 — Oct 28, 2025</p>
+        <h3 className="hotel-name">Hotel Flow</h3>
+        <p className="booking-dates">{formatDate(booking.check_in)} — {formatDate(booking.check_out)}</p>
 
         <div className="booking-info-grid">
           <div className="info-item">
-            <span className="label">Booking ID :</span>
-            <span className="value">#413107</span>
+            <span className="label">Room No:</span>
+            <span className="value">{booking.room_number}</span>
           </div>
-          {/* <div className="info-item">
-            <span className="label">Guest</span>
-            <span className="value">Ashwin Maurya</span>
-          </div> */}
         </div>
       </div>
 

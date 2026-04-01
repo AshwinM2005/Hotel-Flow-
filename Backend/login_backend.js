@@ -216,8 +216,6 @@ app.post("/booking", verifyToken, (req, res) => {
 
       const actualRoomId = roomResult[0].id;
 
-      console.log("Allocated Room:", actualRoomId);
-
       // 🔍 Step 2: Check overlapping bookings
       const checkBookingQuery = `
         SELECT * FROM bookings
@@ -303,4 +301,31 @@ app.post("/booking", verifyToken, (req, res) => {
       );
     });
   });
+});
+
+// my-bookings ##########
+app.get("/booking/my_bookings" , verifyToken , (req, res)=>{
+  const query = `
+    SELECT 
+      bookings.id AS booking_id,
+      bookings.check_in,
+      bookings.check_out,
+      bookings.payment_amount,
+      rooms.room_number,
+      room_types.type AS room_type,
+      room_types.image
+    FROM bookings
+    JOIN rooms ON bookings.room_id = rooms.id
+    JOIN room_types ON rooms.room_type_id = room_types.id
+    WHERE bookings.user_id = ?
+    ORDER BY bookings.id DESC;
+    `
+  const user_id = req.user.id;
+db_connection.query(query , [user_id] , (err , result)=>{
+  if(err){
+    console.error(err);
+    return res.status(500).json({message : "failed to fetch bookings"})
+  }
+  res.json(result);
+});
 });
