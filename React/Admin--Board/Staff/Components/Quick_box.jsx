@@ -1,6 +1,37 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
 
 function Quick_box() {
+  const [stats, setStats] = useState({
+  total: 0,
+  active: 0,
+  on_leave: 0,
+  disabled: 0
+});
+
+const fetchStats = async () => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await fetch("http://localhost:3000/admin/staff-stats", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+    setStats(data);
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+React.useEffect(() => {
+  fetchStats();
+}, []);
+
+
   return (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 m-2 rounded-2xl">
       
@@ -11,7 +42,7 @@ function Quick_box() {
         </div>
         <div>
           <p className="text-sm text-gray-500">Total Staff</p>
-          <p className="text-xl font-semibold text-gray-800">58</p>
+          <p className="text-xl font-semibold text-gray-800">{stats.total}</p>
         </div>
       </div>
 
@@ -22,7 +53,7 @@ function Quick_box() {
         </div>
         <div>
           <p className="text-sm text-gray-500">Active</p>
-          <p className="text-xl font-semibold text-gray-800">45</p>
+          <p className="text-xl font-semibold text-gray-800">{stats.active}</p>
         </div>
       </div>
 
@@ -33,7 +64,7 @@ function Quick_box() {
         </div>
         <div>
           <p className="text-sm text-gray-500">On Leave</p>
-          <p className="text-xl font-semibold text-gray-800">8</p>
+          <p className="text-xl font-semibold text-gray-800">{stats.on_leave}</p>
         </div>
       </div>
 
@@ -44,7 +75,7 @@ function Quick_box() {
         </div>
         <div>
           <p className="text-sm text-gray-500">Disabled</p>
-          <p className="text-xl font-semibold text-gray-800">5</p>
+          <p className="text-xl font-semibold text-gray-800">{stats.disabled}</p>
         </div>
       </div>
 

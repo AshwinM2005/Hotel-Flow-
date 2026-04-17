@@ -1,8 +1,36 @@
 import React from 'react'
 import Staff_Card from './Staff_Card';
+import  { useEffect, useState } from 'react';
+
 
 
 function Staff_Lists() {
+
+   const [staff, setStaff] = useState([]);
+
+  const fetchStaff = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch("http://localhost:3000/admin/staff", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const data = await res.json();
+      setStaff(data);
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchStaff();
+  }, []);
+
+
   return (
     <div className=" rounded-2xl bg-white shadow-sm mx-6">
       
@@ -24,28 +52,9 @@ function Staff_Lists() {
         <tbody className="divide-y divide-gray-100 ">
           
 
-
-          {/* Duplicate rows for layout */}
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
-          <Staff_Card/>
+          {staff.map((member) => (
+            <Staff_Card key={member.id} member={member} />
+          ))}
 
 
         </tbody>

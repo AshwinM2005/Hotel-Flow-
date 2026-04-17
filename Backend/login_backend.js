@@ -405,3 +405,79 @@ app.get("/admin/revenue", verifyToken, (req, res) => {
   });
 });
 
+// ################## staff stats #################
+
+app.get("/admin/staff-stats", verifyToken, (req, res) => {
+  const query = `
+    SELECT status, COUNT(*) AS count
+    FROM staff
+    GROUP BY status
+  `;
+
+  db_connection.query(query, (err, results) => {
+    if (err) return res.status(500).json(err);
+
+    const stats = {
+      total: 0,
+      active: 0,
+      on_leave: 0,
+      disabled: 0
+    };
+
+    results.forEach(r => {
+      stats[r.status] = r.count;
+      stats.total += r.count;
+    });
+
+    res.json(stats);
+  });
+});
+
+// ############################  fetch staff  #############
+
+app.get("/admin/staff", verifyToken, (req, res) => {
+  const { role, status, shift } = req.query;
+
+  let query = "SELECT * FROM staff WHERE 1=1";
+  let values = [];
+
+  if (role) {
+    query += " AND role = ?";
+    values.push(role);
+  }
+
+  if (status) {
+    query += " AND status = ?";
+    values.push(status);
+  }
+
+  if (shift) {
+    query += " AND shift = ?";
+    values.push(shift);
+  }
+
+  db_connection.query(query, values, (err, results) => {
+    if (err) return res.status(500).json(err);
+    res.json(results);
+  });
+});
+
+// #####################  add staff  #####################
+
+app.post("/admin/staff", verifyToken, (req, res) => {
+  const { name, email, phone, role, shift, status } = req.body;
+
+  const query = `
+    INSERT INTO staff (name, email, phone, role, shift, status)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db_connection.query(
+    query,
+    [name, email, phone, role, shift, status || 'active'],
+    (err, result) => {
+      if (err) return res.status(500).json(err);
+      res.json({ message: "Staff added successfully" });
+    }
+  );
+});
