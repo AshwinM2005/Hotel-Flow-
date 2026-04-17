@@ -329,3 +329,79 @@ db_connection.query(query , [user_id] , (err , result)=>{
   res.json(result);
 });
 });
+
+
+// ########################################################################
+//               ##              Admin               ##
+// ########################################################################
+
+
+app.get("/admin/room-stats", verifyToken, (req, res) => {
+  const query = `
+    SELECT status, COUNT(*) AS count
+    FROM rooms
+    GROUP BY status
+  `;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching room stats" });
+    }
+
+    // Default structure (important if some status is missing)
+    const stats = {
+      occupied: 0,
+      reserved: 0,
+      available: 0,
+      not_ready: 0
+    };
+
+    results.forEach(r => {
+      stats[r.status] = r.count;
+    });
+
+    res.json(stats);
+  });
+});
+
+// ################ bookings count ##############
+
+app.get("/admin/new-bookings-count", verifyToken, (req, res) => {
+  const query = `
+    SELECT COUNT(*) AS count
+    FROM bookings
+    WHERE created_at >= NOW() - INTERVAL 30 DAY
+  `;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching bookings" });
+    }
+
+    res.json({ count: results[0].count });
+  });
+});
+
+// ################# revenue ##################
+
+app.get("/admin/revenue", verifyToken, (req, res) => {
+  const query = `
+    SELECT SUM(payment_amount) AS total_revenue
+    FROM bookings
+    WHERE created_at >= NOW() - INTERVAL 30 DAY
+  `;
+
+  db_connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching revenue" });
+    }
+
+    res.json({
+      revenue: results[0].total_revenue || 0
+    });
+  });
+});
+

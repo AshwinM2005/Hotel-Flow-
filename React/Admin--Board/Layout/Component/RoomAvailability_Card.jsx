@@ -2,10 +2,10 @@ import React from "react";
 import "../layout.css";
 
 function RoomAvailability_Card({
-  occupied = 286,
-  reserved = 87,
-  available = 32,
-  notReady = 13,
+  occupied = 0,
+  reserved = 0,
+  available = 0,
+  notReady = 0,
 }) {
   const total = occupied + reserved + available + notReady;
 

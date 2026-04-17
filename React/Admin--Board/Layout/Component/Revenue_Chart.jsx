@@ -9,14 +9,23 @@ import {
 } from "recharts";
 import "../layout.css";
 
-const data = [
-  { month: "Dec 2027", revenue: 240000 },
-  { month: "Jan 2028", revenue: 200000 },
-  { month: "Feb 2028", revenue: 315060 },
-  { month: "Mar 2028", revenue: 260000 },
-  { month: "Apr 2028", revenue: 360000 },
-  { month: "May 2028", revenue: 290000 },
-];
+const getLastSixMonths = () => {
+  const data = [];
+  const currentDate = new Date();
+  
+  for (let i = 5; i >= 0; i--) {
+    const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
+    const month = date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    data.push({
+      month,
+      revenue: Math.floor(Math.random() * (360000 - 200000 + 1)) + 200000,
+    });
+  }
+  
+  return data;
+};
+
+const data = getLastSixMonths();
 
 function Revenue_Chart() {
   return (
@@ -35,10 +44,10 @@ function Revenue_Chart() {
             <YAxis
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) => `$${v / 1000}K`}
+              tickFormatter={(v) => `₹${v / 1000}K`}
             />
             <Tooltip
-              formatter={(value) => `$${value.toLocaleString()}`}
+              formatter={(value) => `₹${value.toLocaleString()}`}
             />
             <Area
               type="monotone"
@@ -56,7 +65,7 @@ function Revenue_Chart() {
       {/* Highlight */}
       <div className="revenue-highlight">
         <span>Total Revenue</span>
-        <strong>$315,060</strong>
+        <strong>₹315,060</strong>
       </div>
     </div>
   );
